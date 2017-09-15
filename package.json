@@ -1,0 +1,31 @@
+{
+  "name": "tes",
+  "version": "1.0.0",
+  "description": "trinity university enterprise system, triune",
+  "main": "tes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdlagdaan/tes"
+  },
+  "keywords": [
+    "trinity",
+    "university",
+    "enterprise",
+    "system",
+    "triune"
+  ],
+  "author": "Randy D. Lagdaan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "express-myconnection": "^1.0.4",
+    "jsonwebtoken": "^8.0.1",
+    "mysql": "^2.14.1"
+  }
+}
