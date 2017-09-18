@@ -8,9 +8,13 @@ const userCrud = require('./routes/user_crud')(router); // Import User Crud Rout
 const collegeCourseCrud = require('./routes/college_course_crud')(router); // Import College Course Crud Routes
 const citizenshipCrud = require('./routes/citizenship_crud')(router); // Import Citizenship Crud Routes
 //const religionCrud = require('./routes/religion_crud')(router); // Import Religion Crud Routes
+<<<<<<< HEAD
 const documentsSubmittedCrud = require('./routes/documents_submitted_crud')(router); // Import Documents Submitted Crud Routes
 const collegeCrud = require('./routes/college_crud')(router); // Import College Crud Routes
 const classListCrud = require('./routes/class_list_crud')(router); // Import College Crud Routes
+=======
+const schoolnameCrud = require('./routes/school_name_crud')(router); // Import School Name Crud Routes
+>>>>>>> mybranch
 
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors'); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
@@ -35,11 +39,16 @@ app.use(bodyParser.json()); // parse application/json
 app.use('/userCrud', userCrud); // Use User Crud routes in application
 app.use('/collegeCourseCrud', collegeCourseCrud); // Use College Course Crud routes in application
 app.use('/citizenshipCrud', citizenshipCrud); // Use User Crud routes in application
+<<<<<<< HEAD
 //app.use('/religionCrud', religionCrud); // Use Religion Crud routes in application
 app.use('/documentsSubmittedCrud', documentsSubmittedCrud); // Use Documents Submitted Crud routes in application
 
 app.use('/collegeCrud', collegeCrud); // Use College Crud routes in application
 app.use('/classListCrud', classListCrud); // Use College Crud routes in application
+=======
+app.use('/schoolnameCrud', schoolnameCrud); // Use School Name Crud routes in application
+//app.use('/religionCrud', religionCrud); // Use Religion Crud routes in application
+>>>>>>> mybranch
 // Connect server to Angular 2 Index.html
 //app.get('*', (req, res) => {
 //  res.sendFile(path.join(__dirname + '/client/index.html'));
