@@ -12,6 +12,8 @@ const documentsSubmittedCrud = require('./routes/documents_submitted_crud')(rout
 const collegeCrud = require('./routes/college_crud')(router); // Import College Crud Routes
 const classListCrud = require('./routes/class_list_crud')(router); // Import College Crud Routes
 const schoolnameCrud = require('./routes/school_name_crud')(router); // Import School Name Crud Routes
+const buildingCrud = require('./routes/building_crud')(router); // Import Building Crud Routes
+const roomCrud = require('./routes/room_crud')(router); // Import Room Crud Routes
 
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors'); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
@@ -42,6 +44,8 @@ app.use('/documentsSubmittedCrud', documentsSubmittedCrud); // Use Documents Sub
 app.use('/collegeCrud', collegeCrud); // Use College Crud routes in application
 app.use('/classListCrud', classListCrud); // Use College Crud routes in application
 app.use('/schoolnameCrud', schoolnameCrud); // Use School Name Crud routes in application
+app.use('/buildingCrud', buildingCrud); // Use Building Crud routes in application
+app.use('/roomCrud', roomCrud); // Use Room Crud routes in application
 //app.use('/religionCrud', religionCrud); // Use Religion Crud routes in application
 // Connect server to Angular 2 Index.html
 //app.get('*', (req, res) => {
