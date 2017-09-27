@@ -2,6 +2,7 @@ const express = require('express'); // Fast, unopinionated, minimalist web frame
 const app = express(); // Initiate Express Application
 const router = express.Router(); // Creates a new router object.
 
+const config = require('./config/config'); // Mongoose Config
 const path = require('path'); // NodeJS Package for file paths
 
 const userCrud = require('./routes/user_crud')(router); // Import User Crud Routes
@@ -12,13 +13,10 @@ const documentsSubmittedCrud = require('./routes/documents_submitted_crud')(rout
 const collegeCrud = require('./routes/college_crud')(router); // Import College Crud Routes
 const classListCrud = require('./routes/class_list_crud')(router); // Import College Crud Routes
 const schoolnameCrud = require('./routes/school_name_crud')(router); // Import School Name Crud Routes
-<<<<<<< HEAD
 const originSchoolCrud = require('./routes/origin_school_crud')(router); // Import Origin School Crud Routes
 const originSchoolDetailsCrud = require('./routes/origin_school_details_crud')(router); // Import Origin School Details Crud Routes
-=======
 const buildingCrud = require('./routes/building_crud')(router); // Import Building Crud Routes
 const roomCrud = require('./routes/room_crud')(router); // Import Room Crud Routes
->>>>>>> refs/remotes/origin/master
 
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors'); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
@@ -29,15 +27,25 @@ const connection = require('express-myconnection');
 const port = process.env.PORT || 8080;
 
 app.use(connection(mysql, {
-  host: 'localhost',
-  user: 'root',
+  host: config.dbhost,
+  user: config.dbuser,
   password: '',
-  database: 'dbtriune'
+  database: config.db
 }, 'request'));
 
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:8080' }));
+// Middleware
+app.use(function(req, res, next) { //allow cross origin requests
+  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
+
+app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use('/userCrud', userCrud); // Use User Crud routes in application
@@ -52,7 +60,7 @@ app.use('/classListCrud', classListCrud); // Use College Crud routes in applicat
 app.use('/schoolnameCrud', schoolnameCrud); // Use School Name Crud routes in application
 app.use('/buildingCrud', buildingCrud); // Use Building Crud routes in application
 app.use('/roomCrud', roomCrud); // Use Room Crud routes in application
-//app.use('/religionCrud', religionCrud); // Use Religion Crud routes in application
+
 // Connect server to Angular 2 Index.html
 //app.get('*', (req, res) => {
 //  res.sendFile(path.join(__dirname + '/client/index.html'));

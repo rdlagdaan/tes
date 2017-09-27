@@ -26,6 +26,7 @@
     "express": "^4.15.4",
     "express-myconnection": "^1.0.4",
     "jsonwebtoken": "^8.0.1",
-    "mysql": "^2.14.1"
+    "mysql": "^2.14.1",
+    "node-datetime": "^2.0.3"
   }
 }

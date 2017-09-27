@@ -1,0 +1,68 @@
+<div class="container">
+    
+   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+    
+   </div>
+
+   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+     
+      <h2 class="page-header">Login</h2>
+
+      <!-- Custom Success/Error Message -->
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+
+                <!-- Login Form -->
+                <form [formGroup]="form" (submit)="onLoginSubmit()">
+                  <!-- UserID Field -->
+                  <div class="form-group">
+                    <label for="UserID">UserID</label>
+                    <div class="form-group input-group" [ngClass]="{'has-error': form.controls.UserID.errors && form.controls.UserID.dirty, 'has-success': form.controls.UserID.valid && form.controls.UserID.dirty }">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input class="form-control" type="text" name="UserID" formControlName="UserID" />
+                      <!-- Validation -->
+                      
+                      <ul class="help-block">
+                        <span><i></i></span>
+                        <li *ngIf="form.controls.UserID.errors?.required && form.controls.UserID.dirty">This field is required.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Password Field  -->
+                  <div class="form-group">
+                    <label for="Password">Password</label>
+                    <div class="form-group input-group" [ngClass]="{'has-error': form.controls.Password.errors && form.controls.Password.dirty, 'has-success': form.controls.Password.valid && form.controls.Password.dirty }">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input class="form-control" type="Password" name="Password" formControlName="Password" />
+                      <!-- Validation -->
+                      <ul class="help-block">
+                        <li *ngIf="form.controls.Password.errors?.required && form.controls.Password.dirty">This field is required.</li>
+                      </ul>
+                    </div>
+                  </div>
+      
+      
+              <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> I agree to the <a href="#">Terms and Conditions</a>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <button [disabled]="!form.valid || processing" type="submit" class="btn btn-info btn-block">Login</button>
+                  
+                </div>
+                <div class="form-group text-center">
+                  <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>
+                </div>
+      
+                  <!-- Submit Button -->
+                  <!--<input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />-->
+                </form>
+        </div>
+</div>
