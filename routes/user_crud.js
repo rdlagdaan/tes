@@ -93,8 +93,9 @@ module.exports = (router) => {
                                                             }
                                                             console.log("result: " + result);
                                                             console.log("insertvalues: " + insertValues);
+                                                            console.log("hello");
                                                             //var ID = result.ID;
-                                                            res.json({success: true});
+                                                            res.json({success: true, message: 'User Information Added to the database!!!'});
                                                         });
                                                     // next(); // Exit middleware
                                                     });
@@ -172,49 +173,18 @@ module.exports = (router) => {
                 });
             } //if (err)
         }); //req.getConnection(function(err, conn) 
-
-
-
-        // Check if EmailAddress exists in database
-       /* User.findOne({ EmailAddress: req.body.EmailAddress.toLowerCase() }, (err, user) => {
-          // Check if error was found
-          if (err) {
-            res.json({ success: false, message: err }); // Return error
-          } else {
-            // Check if EmailAddress was found
-            if (!user) {
-              res.json({ success: false, message: 'EmailAddress not found.' }); // Return error
-            } else {
-              const validPassword = user.comparePassword(req.body.Password); // Compare password provided to password in database
-              // Check if Password is a match
-              if (!validPassword) {
-                res.json({ success: false, message: 'Password invalid' }); // Return error
-              } else {
-                const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' }); // Create a token for client
-                res.json({
-                  success: true,
-                  message: 'Success!',
-                  token: token,
-                  user: {
-                    EmailAddress: user.EmailAddress
-                  }
-                }); // Return success and token to frontend
-              }
-            }
-          }
-        });*/
-
-        
-
      } //if (!req.body.Password)
     } //if (!req.body.UserID)
   });
+
 
   /* ================================================
   MIDDLEWARE - Used to grab user's token from headers
   ================================================ */
   router.use((req, res, next) => {
     const token = req.headers['authorization']; // Create token found in headers
+    console.log("MIDDLEWARE");
+    console.log(req.headers['authorization']);
     // Check if token was found in headers
     if (!token) {
       res.json({ success: false, message: 'No token provided' }); // Return error
@@ -353,6 +323,46 @@ module.exports = (router) => {
         }
     });
 
+
+
+  /* ============================================================
+     Route to check if user's email is available for registration
+  ============================================================ */
+  router.get('/checkEmailAddress/:EmailAddress', (req, res) => {
+    // Check if email was provided in paramaters
+    console.log(req.params.EmailAddress);
+    
+    if (!req.params.EmailAddress) {
+      res.json({ success: false, message: 'EmailAddress was not provided' }); // Return error
+    } else {
+      // Search for user's EmailAddress in database;
+        console.log(req.params.EmailAddress);
+
+      req.getConnection(function(err, conn) {
+        if (err) {
+            console.error('SQL Connection error: ', err);
+            return next(err);
+        } else {
+            conn.query('select * from triune_user u where u.EmailAddress = ?', [req.params.EmailAddress], function(err, rows, fields) {
+                if (err) {
+                    console.error('SQL error: ', err);
+                    return next(err);
+                }
+                if((rows.length) > 0) {
+                    console.log("EmailAddress is available");
+                    res.json({ success: true, message: 'EmailAddress is available' }); // Return as available EmailAddress
+                } else {
+                    console.log("EmailAddress is already taken");
+                    res.json({ success: false, message: 'EmailAddress is already taken' }); // Return error
+                }            
+            });
+        } //if (err)
+    }); //req.getConnection(function(err, conn)      
+      
+
+    }
+  });
+    
 
   return router; // Return router object to main index.js
 }

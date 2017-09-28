@@ -25,7 +25,9 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private router: Router
 
-  ) { }
+  ) { 
+    this.createForm(); // Create Login Form when component is constructed
+  }
 
   // Function to create registration form
   createForm() {
@@ -198,7 +200,7 @@ export class UserComponent implements OnInit {
   // Function to submit form
   onCreateSubmit() {
     this.processing = true; // Used to notify HTML that form is in processing, so that it can be disabled
-    this.disableForm(); // Disable the form
+    //this.disableForm(); // Disable the form
     // Create user object form user's inputs
     const user = {
       UserID: this.userForm.get('UserID').value, // Gender input field
@@ -208,10 +210,11 @@ export class UserComponent implements OnInit {
       UserNumber: this.userForm.get('UserNumber').value, // BirthDate input field
       Password: this.userForm.get('Password').value // Password input field
     }
-
+    console.log(user);
     // Function from user service to register user
     this.userService.createUser(user).subscribe(data => {
       // Response from registration attempt
+      console.log(data);
       if (!data.success) {
         this.messageClass = 'alert alert-danger'; // Set an error class
         this.message = data.message; // Set an error message
@@ -221,18 +224,22 @@ export class UserComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set a success class
         this.message = data.message; // Set a success message
         // After 2 second timeout, navigate to the login page
+        this.userForm = null;
+        this.createForm();
+       // this.enableForm(); // Re-enable form
+        
         setTimeout(() => {
-          this.router.navigate(['/']); // Redirect to login view
+          this.router.navigate(['/user']); // Redirect to login view
         }, 2000);
       }
     });
 
   }
 
-/*  // Function to check if EmailAddress is taken
+  // Function to check if EmailAddress is taken
   checkEmailAddress() {
     // Function from authentication file to check if EmailAddress is taken
-    this.userService.checkEmailAddress(this.form.get('EmailAddress').value).subscribe(data => {
+    this.userService.checkEmailAddress(this.userForm.get('EmailAddress').value).subscribe(data => {
       // Check if success true or false was returned from API
       if (!data.success) {
         this.emailAddressValid = false; // Return email as invalid
@@ -243,10 +250,10 @@ export class UserComponent implements OnInit {
       }
     });
   }
-*/
+
 
   
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
