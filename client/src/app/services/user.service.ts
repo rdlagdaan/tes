@@ -43,7 +43,8 @@ export class UserService {
 
   // Function to create user accounts
   createUser(user) {
-    return this.http.post(this.domain + 'userCrud/createUser', user).map(res => res.json());
+    this.createUserHeaders();
+    return this.http.post(this.domain + 'userCrud/createUser', user, this.options).map(res => res.json());
   }
  
 
@@ -71,6 +72,15 @@ export class UserService {
     return this.http.get(this.domain + 'userCrud/getUsers', this.options).map(res => res.json());
   }
 
+
+  // Function to delete user
+  deleteUser(ID) {
+    this.createUserHeaders();
+    console.log("DELETE USER");
+    console.log(ID);
+    return this.http.delete(this.domain + 'userCrud/deleteUser/' + ID, this.options).map(res => res.json());
+  }  
+  
  
  // Function to check if EmailAddress is taken
  checkEmailAddress(EmailAddress) {
@@ -94,7 +104,7 @@ export class UserService {
     if (token) {
       // Check if the token is not expired
       if (this.loggedIn()) {
-        this.loadToken(); // Ensue user is logged in
+        this.loadToken(); // Ensue user is logged 
       } else {
         this.logout(); // Should not have token; log user out
       }

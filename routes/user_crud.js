@@ -124,57 +124,77 @@ module.exports = (router) => {
   LOGIN ROUTE
   ======== */
   router.post('/login', (req, res) => {
-    // Check if UserID was provided
-    if (!req.body.UserID) {
-      res.json({ success: false, message: 'No UserID was provided' }); // Return error
-    } else {
-      // Check if Password was provided
-      if (!req.body.Password) {
-        res.json({ success: false, message: 'No password was provided.' }); // Return error
-      } else {
+        try {
 
-        req.getConnection(function(err, conn) {
-            if (err) {
-                console.error('SQL Connection error: ', err);
-                return next(err);
+            // Check if UserID was provided
+            if (!req.body.UserID) {
+                return res.json({ success: false, message: 'No UserID was provided' }); // Return error
             } else {
-                conn.query('select * from triune_user u where u.UserID = ?', [req.body.UserID], function(err, rows, fields) {
+            // Check if Password was provided
+            if (!req.body.Password) {
+                return res.json({ success: false, message: 'No password was provided.' }); // Return error
+            } else {
+
+                req.getConnection(function(err, conn) {
                     if (err) {
-                        console.error('SQL error: ', err);
-                        return next(err);
-                    }
-                    if((rows.length) > 0) {
-                        console.log("result: " + rows[0].Password);
-                        var validPassword = bcrypt.compareSync(req.body.Password, rows[0].Password); 
-                        console.log(validPassword);
-                        
-                        if(!validPassword) {
-                            console.log("Invalid Password");
-                            res.json({ success: false, message: 'Password invalid' }); // Return error
-                        } else {
-
-                            const token = jwt.sign({ userId: rows[0].UserID }, config.secret, { expiresIn: '24h' }); // Create a token for client
-                            res.json({
-                              success: true,
-                              message: 'Success!',
-                              token: token,
-                              user: {
-                                UserID: rows[0].UserID
-                              }
-                            }); // Return success and token to frontend                           
-                        }
-
-
+                        console.error('SQL Connection error: ', err);
+                        //return next(err);
+                        return res.json({ success: false, message: 'Database Down, please check!' }); // Return error
                     } else {
-                        console.log("UserID not found");
-                        res.json({ success: false, message: 'UserID not found.' }); // Return error
-                    }
-                   // res.json(rows);
-                });
-            } //if (err)
-        }); //req.getConnection(function(err, conn) 
-     } //if (!req.body.Password)
-    } //if (!req.body.UserID)
+                        conn.query('select * from triune_user u where u.UserID = ?', [req.body.UserID], function(err, rows, fields) {
+                            if (err) {
+                                console.error('SQL error: ', err);
+                                //return next(err);
+                                return res.json({ success: false, message: 'There is a problem with the table/query!' }); // Return error
+                            }
+                                if(rows) {
+                                    if((rows.length) > 0) {
+                                        console.log("result: " + rows[0].Password);
+                                        var validPassword = bcrypt.compareSync(req.body.Password, rows[0].Password); 
+                                        console.log(validPassword);
+                                        
+                                        if(!validPassword) {
+                                            console.log("Invalid Password");
+                                            return res.json({ success: false, message: 'Password invalid' }); // Return error
+                                        } else {
+
+                                            const token = jwt.sign({ userId: rows[0].UserID }, config.secret, { expiresIn: '24h' }); // Create a token for client
+                                            return res.json({
+                                            success: true,
+                                            message: 'Success!',
+                                            token: token,
+                                            user: {
+                                                UserID: rows[0].UserID
+                                            }
+                                            }); // Return success and token to frontend                           
+                                        }
+
+
+                                    } else {
+                                        console.log("UserID not found");
+                                        return res.json({ success: false, message: 'UserID not found.' }); // Return error
+                                    }
+                                } else {
+                                    console.error("Internal error:"+ex);
+                                    //return next(ex);
+                                    return res.json({ success: false, message: 'Internal Error!!!' }); // Return error
+                        
+                                }
+                        // res.json(rows);
+                        });
+                    } //if (err)
+                }); //req.getConnection(function(err, conn) 
+            } //if (!req.body.Password)
+            } //if (!req.body.UserID)
+        } 
+        catch(ex){
+            console.error("Internal error:"+ex);
+            //return next(ex);
+            return res.json({ success: false, message: 'Internal Error!!!' }); // Return error
+            
+        }
+    
+
   });
 
 
@@ -183,11 +203,9 @@ module.exports = (router) => {
   ================================================ */
   router.use((req, res, next) => {
     const token = req.headers['authorization']; // Create token found in headers
-    console.log("MIDDLEWARE");
-    console.log(req.headers['authorization']);
     // Check if token was found in headers
     if (!token) {
-      res.json({ success: false, message: 'No token provided' }); // Return error
+      return res.json({ success: false, message: 'No token provided' }); // Return error
     } else {
       // Verify the token is valid
       jwt.verify(token, config.secret, (err, decoded) => {
@@ -275,13 +293,15 @@ module.exports = (router) => {
     DELETE USER
     =============================================================== */
     router.delete('/deleteUser/:ID', (req, res, next) => {
+        console.log(req.params.ID);
         try {
+                console.log(req.params.ID);
                 req.getConnection(function(err, conn) {
                 if (err) {
                     console.error('SQL Connection error: ', err);
                     return next(err);
                 } else {
-                    conn.query('delete from triune_user  where ID = ?', [req.params.ID], function(err, rows, fields) {
+                    conn.query('delete from triune_user where ID = ?', [req.params.ID], function(err, rows, fields) {
                         if (err) {
                             console.error('SQL error: ', err);
                             return next(err);

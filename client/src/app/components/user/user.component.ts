@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   processing = false;
   emailAddressValid;
   emailAddressMessage;
+  users;
 
 
   constructor(
@@ -227,7 +228,13 @@ export class UserComponent implements OnInit {
         this.userForm = null;
         this.createForm();
        // this.enableForm(); // Re-enable form
-        
+
+       this.userService.getUsers().subscribe(userlist => {
+        console.log(userlist);
+        this.users = userlist;
+      });
+         
+       
         setTimeout(() => {
           this.router.navigate(['/user']); // Redirect to login view
         }, 2000);
@@ -252,8 +259,30 @@ export class UserComponent implements OnInit {
   }
 
 
+  //Function to delete user
+  deleteUser(ID) {
+    this.userService.deleteUser(ID).subscribe(data => {
+
+      if(!data.success) {
+
+      } else {
+
+      }
+      this.userService.getUsers().subscribe(userlist => {
+        console.log(userlist);
+        this.users = userlist;
+      });
+        
+
+    })
+  }
+
   
   ngOnInit() { 
+    this.userService.getUsers().subscribe(userlist => {
+      console.log(userlist);
+      this.users = userlist;
+    });
   }
 
 }
