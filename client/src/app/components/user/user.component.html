@@ -16,7 +16,7 @@
       <tbody>
         <tr *ngFor="let row of users">
           <td>
-            <button type="button" name="button" class="btn btn-sm btn-info">Edit</button>
+            <button type="button" name="button" class="btn btn-sm btn-info" (click)="editUser(row.ID)">Edit</button>
           </td>  
           <td>
             <button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteUser(row.ID)">Delete</button>
@@ -36,7 +36,7 @@
     <!--FORM TITLE -->
     <div>
         <div>
-         <h2 >Create User!&nbsp;<small>TRIUNE</small></h2>
+         <h2 >{{label}}!&nbsp;<small>TRIUNE</small></h2>
         </div>
      <div>
 
@@ -55,7 +55,7 @@
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
            <!-- FirstNameUser Input -->
            <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.FirstNameUser.errors && userForm.controls.FirstNameUser.dirty) || (userForm.controls.FirstNameUser.dirty), 'has-success': !userForm.controls.FirstNameUser.errors}">
+               <div [ngClass]="{'has-error': (userForm.controls.FirstNameUser.errors && userForm.controls.FirstNameUser.dirty) , 'has-success': !userForm.controls.FirstNameUser.errors}">
                <input type="text" name="FirstNameUser" class="form-control" autocomplete="off" placeholder="*FirstName" formControlName="FirstNameUser" />
                <!-- Validation -->
                <ul class="help-block">
@@ -70,7 +70,7 @@
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
            <!-- LastNameUser Input -->
            <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.LastNameUser.errors && userForm.controls.LastNameUser.dirty) || (userForm.controls.LastNameUser.dirty), 'has-success': !userForm.controls.LastNameUser.errors}">
+             <div [ngClass]="{'has-error': (userForm.controls.LastNameUser.errors && userForm.controls.LastNameUser.dirty) , 'has-success': !userForm.controls.LastNameUser.errors}">
                <input type="text" name="LastNameUser" class="form-control" autocomplete="off" placeholder="*LastName" formControlName="LastNameUser" />
                <!-- Validation -->
                <ul class="help-block">
@@ -90,7 +90,7 @@
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
            <!-- UserID Input -->
            <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.UserID.errors && userForm.controls.UserID.dirty) || (userForm.controls.UserID.dirty), 'has-success': !userForm.controls.UserID.errors}">
+             <div [ngClass]="{'has-error': (userForm.controls.UserID.errors && userForm.controls.UserID.dirty) , 'has-success': !userForm.controls.UserID.errors}">
                <input type="text" name="UserID" class="form-control" autocomplete="off" placeholder="*UserID" formControlName="UserID" />
                <!-- Validation -->
                <ul class="help-block">
@@ -105,7 +105,7 @@
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
            <!-- UserNumber Input -->
            <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.UserNumber.errors && userForm.controls.UserNumber.dirty) || (userForm.controls.UserNumber.dirty), 'has-success': !userForm.controls.UserNumber.errors}">
+             <div [ngClass]="{'has-error': (userForm.controls.UserNumber.errors && userForm.controls.UserNumber.dirty) , 'has-success': !userForm.controls.UserNumber.errors}">
                <input type="text" name="UserNumber" class="form-control" autocomplete="off" placeholder="*UserNumber" formControlName="UserNumber" />
                <!-- Validation -->
                <ul class="help-block">
@@ -123,7 +123,7 @@
 
        <!-- EmailAddress Input -->
        <div class="form-group">
-         <div [ngClass]="{'has-error': (userForm.controls.EmailAddress.errors && userForm.controls.EmailAddress.dirty) || (!emailAddressValid && userForm.controls.EmailAddress.dirty), 'has-success': !userForm.controls.EmailAddress.errors && emailAddressValid}">
+         <div [ngClass]="{'has-error': (userForm.controls.EmailAddress.errors && userForm.controls.EmailAddress.dirty) , 'has-success': !userForm.controls.EmailAddress.errors && emailAddressValid}">
            <input type="text" name="EmailAddress" class="form-control" autocomplete="off" placeholder="*EmailAddress" formControlName="EmailAddress" (blur)="checkEmailAddress()" />
            <!-- Validation -->
            <ul class="help-block">
@@ -168,7 +168,7 @@
         </div> <!-- row -->
 
        <!-- Submit Input -->
-       <input [disabled]="!userForm.valid || processing || !emailAddressValid" type="submit" class="btn btn-info btn-block" value="Submit" />
+       <input [disabled]="!userForm.valid || processing || !emailAddressValid" type="submit" class="btn btn-info btn-block" value="{{buttonName}}" />
              
      </form>
      <!-- Registration Form -->

@@ -60,7 +60,7 @@ module.exports = (router) => {
                                                     console.error('SQL error: ', err);
                                                     return next(err);
                                                 }
-                                                console.log("UserID Exist: " + rows);
+                                                //console.log("UserID Exist: " + rows);
 
                                                 
                                                 if(rows != '') {
@@ -91,9 +91,9 @@ module.exports = (router) => {
                                                                 //console.error('SQL error: ', err);
                                                                 return next(err);
                                                             }
-                                                            console.log("result: " + result);
-                                                            console.log("insertvalues: " + insertValues);
-                                                            console.log("hello");
+                                                            //console.log("result: " + result);
+                                                            //console.log("insertvalues: " + insertValues);
+                                                            //console.log("hello");
                                                             //var ID = result.ID;
                                                             res.json({success: true, message: 'User Information Added to the database!!!'});
                                                         });
@@ -149,12 +149,12 @@ module.exports = (router) => {
                             }
                                 if(rows) {
                                     if((rows.length) > 0) {
-                                        console.log("result: " + rows[0].Password);
+                                        //console.log("result: " + rows[0].Password);
                                         var validPassword = bcrypt.compareSync(req.body.Password, rows[0].Password); 
-                                        console.log(validPassword);
+                                        //console.log(validPassword);
                                         
                                         if(!validPassword) {
-                                            console.log("Invalid Password");
+                                            //console.log("Invalid Password");
                                             return res.json({ success: false, message: 'Password invalid' }); // Return error
                                         } else {
 
@@ -171,11 +171,11 @@ module.exports = (router) => {
 
 
                                     } else {
-                                        console.log("UserID not found");
+                                        //console.log("UserID not found");
                                         return res.json({ success: false, message: 'UserID not found.' }); // Return error
                                     }
                                 } else {
-                                    console.error("Internal error:"+ex);
+                                    //console.error("Internal error:"+ex);
                                     //return next(ex);
                                     return res.json({ success: false, message: 'Internal Error!!!' }); // Return error
                         
@@ -224,7 +224,7 @@ module.exports = (router) => {
 
 
     /* ===============================================================
-    GET USER
+    GET USER POST
     =============================================================== */
     router.post('/getUser', function(req, res, next) {
         try {
@@ -289,13 +289,46 @@ module.exports = (router) => {
 
 
 
+      /* ===============================================================
+    GET USER GET
+    =============================================================== */
+    router.get('/getUser/:ID', function(req, res, next) {
+        try {  //console.log(req.params.ID);
+                req.getConnection(function(err, conn) {
+                    if (err) {
+                        console.error('SQL Connection error: ', err);
+                        return next(err);
+                    } else {
+                        conn.query('select * from triune_user u where u.ID = ?', [req.params.ID], function(err, rows, fields) {
+                            if (err) {
+                                console.error('SQL error: ', err);
+                                return next(err);
+                            }
+                            var resEmp = [];
+                            for (var empIndex in rows) {
+                                var empObj = rows[empIndex ];
+                                resEmp .push(empObj);
+                            }
+                            res.json(resEmp);
+                        });
+                    } //if (err)
+                }); //req.getConnection(function(err, conn) 
+        } catch (ex) {
+                console.error("Internal error:" + ex);
+                return next(ex);
+        } //try
+    });
+  
+
+
+
     /* ===============================================================
     DELETE USER
     =============================================================== */
     router.delete('/deleteUser/:ID', (req, res, next) => {
         console.log(req.params.ID);
         try {
-                console.log(req.params.ID);
+                //console.log(req.params.ID);
                 req.getConnection(function(err, conn) {
                 if (err) {
                     console.error('SQL Connection error: ', err);
@@ -333,7 +366,7 @@ module.exports = (router) => {
                                 console.error('SQL error: ', err);
                                 return next(err);
                             }
-                            res.json({ success: true, message: 'Firt Name updated'});
+                            res.json({ success: true, message: 'First Name updated'});
                         });
                     }
                 });
@@ -350,13 +383,13 @@ module.exports = (router) => {
   ============================================================ */
   router.get('/checkEmailAddress/:EmailAddress', (req, res) => {
     // Check if email was provided in paramaters
-    console.log(req.params.EmailAddress);
+    //console.log(req.params.EmailAddress);
     
     if (!req.params.EmailAddress) {
       res.json({ success: false, message: 'EmailAddress was not provided' }); // Return error
     } else {
       // Search for user's EmailAddress in database;
-        console.log(req.params.EmailAddress);
+        //console.log(req.params.EmailAddress);
 
       req.getConnection(function(err, conn) {
         if (err) {
@@ -369,10 +402,10 @@ module.exports = (router) => {
                     return next(err);
                 }
                 if((rows.length) > 0) {
-                    console.log("EmailAddress is already taken");
+                    //console.log("EmailAddress is already taken");
                     res.json({ success: false, message: 'EmailAddress is already taken' }); // Return error
                 } else {
-                    console.log("EmailAddress is available");
+                    //console.log("EmailAddress is available");
                     res.json({ success: true, message: 'EmailAddress is available' }); // Return as available EmailAddress
                 }            
             });

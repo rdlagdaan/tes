@@ -19,7 +19,8 @@ export class UserComponent implements OnInit {
   emailAddressValid;
   emailAddressMessage;
   users;
-
+  label = "Create User";
+  buttonName = "Submit";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -108,6 +109,7 @@ export class UserComponent implements OnInit {
     this.userForm.controls['UserNumber'].enable();
     this.userForm.controls['Password'].enable();
     this.userForm.controls['Confirm'].enable();
+    
   }
 
 
@@ -201,7 +203,7 @@ export class UserComponent implements OnInit {
   // Function to submit form
   onCreateSubmit() {
     this.processing = true; // Used to notify HTML that form is in processing, so that it can be disabled
-    //this.disableForm(); // Disable the form
+    this.disableForm(); // Disable the form
     // Create user object form user's inputs
     const user = {
       UserID: this.userForm.get('UserID').value, // Gender input field
@@ -225,9 +227,10 @@ export class UserComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set a success class
         this.message = data.message; // Set a success message
         // After 2 second timeout, navigate to the login page
+        this.processing = false; // Used to notify HTML that form is in processing, so that it can be disabled
+        this.enableForm(); // Re-enable form
         this.userForm = null;
         this.createForm();
-       // this.enableForm(); // Re-enable form
 
        this.userService.getUsers().subscribe(userlist => {
         console.log(userlist);
@@ -262,7 +265,6 @@ export class UserComponent implements OnInit {
   //Function to delete user
   deleteUser(ID) {
     this.userService.deleteUser(ID).subscribe(data => {
-
       if(!data.success) {
 
       } else {
@@ -272,12 +274,28 @@ export class UserComponent implements OnInit {
         console.log(userlist);
         this.users = userlist;
       });
-        
-
     })
   }
 
+
   
+  //Function to delete user
+  editUser(ID) {
+    this.label = "Update User!";
+    this.buttonName = "Update";
+
+    this.userService.getUserGet(ID).subscribe(data => {
+      this.userForm.patchValue({
+        UserID: data[0].UserID,
+        LastNameUser: data[0].LastNameUser,
+        FirstNameUser: data[0].LastNameUser,
+        EmailAddress: data[0].EmailAddress,
+        UserNumber: data[0].UserNumber
+      });
+    });
+  }
+
+
   ngOnInit() { 
     this.userService.getUsers().subscribe(userlist => {
       console.log(userlist);

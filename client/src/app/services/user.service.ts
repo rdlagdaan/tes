@@ -49,10 +49,17 @@ export class UserService {
  
 
   // Function to login user
-  getUser(user) {
+  getUserPost(user) {
     this.createUserHeaders();
-    return this.http.post(this.domain + 'userCrud/getUser', user).map(res => res.json());
+    return this.http.post(this.domain + 'userCrud/getUser', user, this.options).map(res => res.json());
   }  
+
+
+  getUserGet(ID) {
+    this.createUserHeaders();
+    return this.http.get(this.domain + 'userCrud/getUser/' + ID, this.options).map(res => res.json());
+  }  
+
 
   // Function to login user
   login(user) {
