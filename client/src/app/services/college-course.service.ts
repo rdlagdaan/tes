@@ -27,6 +27,7 @@ export class CollegeCourseService {
 
   // Function to create college course
   createCollegeCourse(collegeCourse) {
+    this.createHeaders(); // Create headers before sending to API
     return this.http.post(this.domain + 'collegeCourseCrud/createCollegeCourse', collegeCourse).map(res => res.json());
   }
   

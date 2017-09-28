@@ -18,8 +18,6 @@ export class UserService {
   createUserHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
-    console.log(this.userToken);
-    console.log("USER HEADERS");
     this.options = new RequestOptions({
       headers: new Headers({
         'Content-Type': 'application/json', // Format set to JSON
@@ -31,23 +29,15 @@ export class UserService {
   // Function to get token from client local storage
   loadToken() {
     this.userToken = localStorage.getItem('token');; // Get token and asssign to variable to be used elsewhere
-    console.log("LOAD TOKEN");
-    console.log(this.userToken);
   }
   
 
   // Function to store user's data in client local storage
   storeUserData(token, user) {
-    console.log("STORE USER DATA");
-    console.log(token);
-    console.log(user);
     localStorage.setItem('token', token); // Set token in local storage
     localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
     this.userToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
-    console.log(this.userToken);
-    console.log(user);
-    console.log("STORE USER DATA");
   }
   
 
@@ -59,12 +49,12 @@ export class UserService {
 
   // Function to login user
   getUser(user) {
+    this.createUserHeaders();
     return this.http.post(this.domain + 'userCrud/getUser', user).map(res => res.json());
   }  
 
   // Function to login user
   login(user) {
-    this.createUserHeaders(); // Create headers before sending to API
     return this.http.post(this.domain + 'userCrud/login', user).map(res => res.json());
   }
   
@@ -84,8 +74,8 @@ export class UserService {
  
  // Function to check if EmailAddress is taken
  checkEmailAddress(EmailAddress) {
-  this.createUserHeaders();
-  return this.http.get(this.domain + 'userCrud/checkEmailAddress/' + EmailAddress).map(res => res.json());
+  this.createUserHeaders(); // Create headers before sending to API
+  return this.http.get(this.domain + 'userCrud/checkEmailAddress/' + EmailAddress, this.options).map(res => res.json());
 }
 
   // Function to check if user is logged in

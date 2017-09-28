@@ -349,11 +349,11 @@ module.exports = (router) => {
                     return next(err);
                 }
                 if((rows.length) > 0) {
-                    console.log("EmailAddress is available");
-                    res.json({ success: true, message: 'EmailAddress is available' }); // Return as available EmailAddress
-                } else {
                     console.log("EmailAddress is already taken");
                     res.json({ success: false, message: 'EmailAddress is already taken' }); // Return error
+                } else {
+                    console.log("EmailAddress is available");
+                    res.json({ success: true, message: 'EmailAddress is available' }); // Return as available EmailAddress
                 }            
             });
         } //if (err)
