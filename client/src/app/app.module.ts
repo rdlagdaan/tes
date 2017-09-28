@@ -38,6 +38,7 @@ import { CollegeService } from './services/college.service';
 import { CitizenshipService } from './services/citizenship.service';
 import { SchoolNameService } from './services/school-name.service';
 import { UserComponent } from './components/user/user.component';
+import { BuildingComponent } from './components/building/building.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { UserComponent } from './components/user/user.component';
     CollegeComponent,
     SchoolNameComponent,
     CollegeCourseComponent,
-    UserComponent
+    UserComponent,
+    BuildingComponent
   ],
   imports: [
     BrowserModule, 
