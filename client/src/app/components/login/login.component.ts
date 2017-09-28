@@ -55,9 +55,6 @@ export class LoginComponent implements OnInit {
       Password: this.form.get('Password').value // Password input field
     }
 
-    console.log("UserID: " + user.UserID);
-    console.log("Password: " + user.Password);
-    
     // Function to send login data to API
     this.userService.login(user).subscribe(data => {
       // Check if response was a success or error
@@ -70,6 +67,11 @@ export class LoginComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set bootstrap success class
         this.message = data.message; // Set success message
         // Function to store user's token in client local storage
+        console.log("LOGIN");
+        console.log("DATA TOKEN");
+        console.log(data.token);
+        console.log("DATA USER");
+        console.log(data.user);
         this.userService.storeUserData(data.token, data.user);
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
