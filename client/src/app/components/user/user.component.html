@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   
- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+ <div class="container-fluid col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
 
     <table id="myTable" class="table table-hover table-inverse">
       <thead>
@@ -29,153 +29,26 @@
       </tbody>
     </table>          
 
+
+
  </div>
 
- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-
-    <!--FORM TITLE -->
-    <div>
-        <div>
-         <h2 >{{label}}!&nbsp;<small>TRIUNE</small></h2>
-        </div>
-     <div>
-
-     <!-- Custom Success/Error Message -->
-     <div class="row show-hide-message">
-       <div [ngClass]="messageClass">
-       {{ message }}
-       </div>
-     </div>
-
-     <!-- Registration Form -->
-     <form [formGroup]="userForm" (submit)="onCreateSubmit()">
-
-        <div class="row">
-          
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- FirstNameUser Input -->
-           <div class="form-group">
-               <div [ngClass]="{'has-error': (userForm.controls.FirstNameUser.errors && userForm.controls.FirstNameUser.dirty) , 'has-success': !userForm.controls.FirstNameUser.errors}">
-               <input type="text" name="FirstNameUser" class="form-control" autocomplete="off" placeholder="*FirstName" formControlName="FirstNameUser" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.FirstNameUser.errors?.required && userForm.controls.FirstNameUser.dirty">This field is required</li>
-                 <li *ngIf="userForm.controls.FirstNameUser.errors?.minlength && userForm.controls.FirstNameUser.dirty || userForm.controls.FirstNameUser.errors?.maxlength && userForm.controls.FirstNameUser.dirty ">Minimum characters: 3, Maximum characters: 15</li>
-                 <li *ngIf="userForm.controls.FirstNameUser.errors?.validateFirstNameUser && userForm.controls.FirstNameUser.dirty">FirstName must not have any special characters</li>
-               </ul>
-             </div>
-           </div>
-         </div>
-
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- LastNameUser Input -->
-           <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.LastNameUser.errors && userForm.controls.LastNameUser.dirty) , 'has-success': !userForm.controls.LastNameUser.errors}">
-               <input type="text" name="LastNameUser" class="form-control" autocomplete="off" placeholder="*LastName" formControlName="LastNameUser" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.LastNameUser.errors?.required && userForm.controls.LastNameUser.dirty">This field is required</li>
-                 <li *ngIf="userForm.controls.LastNameUser.errors?.minlength && userForm.controls.LastNameUser.dirty || userForm.controls.LastNameUser.errors?.maxlength && userForm.controls.LastNameUser.dirty ">Minimum characters: 3, Maximum characters: 15</li>
-                 <li *ngIf="userForm.controls.LastNameUser.errors?.validateLastNameUser && userForm.controls.LastNameUser.dirty">LastName must not have any special characters</li>
-               </ul>
-             </div>
-           </div>
-         </div>
-       
-       </div> <!-- row -->
-
-
-       <div class="row">
-          
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- UserID Input -->
-           <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.UserID.errors && userForm.controls.UserID.dirty) , 'has-success': !userForm.controls.UserID.errors}">
-               <input type="text" name="UserID" class="form-control" autocomplete="off" placeholder="*UserID" formControlName="UserID" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.UserID.errors?.required && userForm.controls.UserID.dirty">This field is required</li>
-                 <li *ngIf="userForm.controls.UserID.errors?.minlength && userForm.controls.UserID.dirty || userForm.controls.UserID.errors?.maxlength && userForm.controls.UserID.dirty ">Minimum characters: 3, Maximum characters: 15</li>
-                 <li *ngIf="userForm.controls.UserID.errors?.validateUserID && userForm.controls.UserID.dirty">UserID must not have any special characters</li>
-               </ul>
-             </div>
-           </div>
-         </div>
-
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- UserNumber Input -->
-           <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.UserNumber.errors && userForm.controls.UserNumber.dirty) , 'has-success': !userForm.controls.UserNumber.errors}">
-               <input type="text" name="UserNumber" class="form-control" autocomplete="off" placeholder="*UserNumber" formControlName="UserNumber" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.UserNumber.errors?.required && userForm.controls.UserNumber.dirty">This field is required</li>
-                 <li *ngIf="userForm.controls.UserNumber.errors?.minlength && userForm.controls.UserNumber.dirty || userForm.controls.UserNumber.errors?.maxlength && userForm.controls.UserNumber.dirty ">Minimum characters: 3, Maximum characters: 15</li>
-                 <li *ngIf="userForm.controls.UserNumber.errors?.validateUserNumber && userForm.controls.UserNumber.dirty">UserNumber must not have any special characters</li>
-               </ul>
-             </div>
-           </div>
-         </div>
-       
-       </div> <!-- row -->
-       
-
-
-       <!-- EmailAddress Input -->
-       <div class="form-group">
-         <div [ngClass]="{'has-error': (userForm.controls.EmailAddress.errors && userForm.controls.EmailAddress.dirty) , 'has-success': !userForm.controls.EmailAddress.errors && emailAddressValid}">
-           <input type="text" name="EmailAddress" class="form-control" autocomplete="off" placeholder="*EmailAddress" formControlName="EmailAddress" (blur)="checkEmailAddress()" />
-           <!-- Validation -->
-           <ul class="help-block">
-             <li *ngIf="userForm.controls.EmailAddress.errors?.required && userForm.controls.EmailAddress.dirty">This field is required</li>
-             <li *ngIf="(userForm.controls.EmailAddress.errors?.minlength && userForm.controls.EmailAddress.dirty || userForm.controls.EmailAddress.errors?.maxlength && userForm.controls.EmailAddress.dirty ) && userForm.controls.EmailAddress.dirty">Minimum characters: 5, Maximum characters: 30</li>
-             <li *ngIf="userForm.controls.EmailAddress.errors?.validateEmailAddress && userForm.controls.EmailAddress.dirty">This must be a valid EmailAddress</li>
-             <li *ngIf="emailAddressMessage">{{ emailAddressMessage}}</li>
-           </ul>
-         </div>
-       </div> 
-
-       <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- Password Input -->
-           <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.Password.errors && userForm.controls.Password.dirty), 'has-success': !userForm.controls.Password.errors}">
-               <input type="Password" name="Password" class="form-control" autocomplete="off" placeholder="*Password" formControlName="Password" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.Password.errors?.required && userForm.controls.Password.dirty">This field is required</li>
-                 <li *ngIf="userForm.controls.Password.errors?.minlength && userForm.controls.Password.dirty || userForm.controls.Password.errors?.maxlength && userForm.controls.Password.dirty ">Minimum characters: 8, Maximum characters: 35</li>
-                 <li *ngIf="userForm.controls.Password.errors?.validatePassword && userForm.controls.Password.dirty">Password must be at least 8 characters but no more than 35</li>
-               </ul>
-             </div>
-           </div>
-          </div>
-
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-           <!-- Confirm Password Input -->
-           <div class="form-group">
-             <div [ngClass]="{'has-error': (userForm.controls.Confirm.errors && userForm.controls.Confirm.dirty) || (userForm.errors?.matchingPasswords && userForm.controls.Confirm.dirty), 'has-success': !userForm.controls.Confirm.errors && !userForm.errors?.matchingPasswords}">
-               <input type="Password" name="Confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password" formControlName="Confirm" />
-               <!-- Validation -->
-               <ul class="help-block">
-                 <li *ngIf="userForm.controls.Confirm.errors?.required && userForm.controls.Confirm.dirty">This field is required</li>
-                 <li *ngIf="userForm.errors?.matchingPasswords && userForm.controls.Confirm.dirty">Password do not match</li>
-               </ul>
-             </div>
-           </div>
-         </div>
-
-        </div> <!-- row -->
-
-       <!-- Submit Input -->
-       <input [disabled]="!userForm.valid || processing || !emailAddressValid" type="submit" class="btn btn-info btn-block" value="{{buttonName}}" />
-             
-     </form>
-     <!-- Registration Form -->
-   
-  
-
-
-
-   </div>
 </div>  
+
+<div class="rTable">
+  <div class="rTableRow">
+  <div class="rTableHead"><strong>Name</strong></div>
+  <div class="rTableHead"><span style="font-weight: bold;">Telephone</span></div>
+  <div class="rTableHead">&nbsp;</div>
+  </div>
+  <div class="rTableRow">
+  <div class="rTableCell">John</div>
+  <div class="rTableCell"><a href="tel:0123456785">0123 456 785</a></div>
+  <div class="rTableCell"><img src="images/check.gif" alt="checked" /></div>
+  </div>
+  <div class="rTableRow">
+  <div class="rTableCell">Cassie</div>
+  <div class="rTableCell"><a href="tel:9876532432">9876 532 432</a></div>
+  <div class="rTableCell"><img src="images/check.gif" alt="checked" /></div>
+  </div>
+  </div>

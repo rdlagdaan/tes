@@ -2,16 +2,21 @@
 -MODULES---------------------
 -----------------------------*/
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, Injector } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpInterceptor } from '@angular/common/http';
+
+import { Router, ActivatedRoute } from '@angular/router';  
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppRoutingModule } from './app.routing.module';
 
+import { Observable } from 'rxjs/Observable';  
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule } from '@angular/material';
-
+import { EJAngular2Module } from 'ej-angular2';
 /*---------------------------
 -COMPONENTS---------------------
 -----------------------------*/
@@ -25,6 +30,7 @@ import { CollegeComponent } from './components/college/college.component';
 import { SchoolNameComponent } from './components/school-name/school-name.component';
 import { CollegeCourseComponent } from './components/college-course/college-course.component';
 
+import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
 /*---------------------------
 -SERVICES---------------------
@@ -53,7 +59,8 @@ import { BuildingComponent } from './components/building/building.component';
     SchoolNameComponent,
     CollegeCourseComponent,
     UserComponent,
-    BuildingComponent
+    BuildingComponent,
+    TreeViewComponent
   ],
   imports: [
     BrowserModule, 
@@ -67,12 +74,13 @@ import { BuildingComponent } from './components/building/building.component';
     MdCardModule,
     MdIconModule,
     MdMenuModule,
-    MdToolbarModule
+    MdToolbarModule,
+    EJAngular2Module.forRoot()
   ],
   providers: [
     UserService, CollegeCourseService, AuthGuard, 
     NotAuthGuard, ReligionService, CollegeService, 
-    CitizenshipService, SchoolNameService 
+    CitizenshipService, SchoolNameService  
   ],
   bootstrap: [AppComponent]
 })

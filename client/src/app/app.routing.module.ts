@@ -10,6 +10,8 @@ import { CollegeComponent } from './components/college/college.component';
 import { SchoolNameComponent } from './components/school-name/school-name.component';
 import { CollegeCourseComponent } from './components/college-course/college-course.component';
 
+import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
+
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
@@ -17,7 +19,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent // Default Route
+    component: HomeComponent, // Default Route
+    outlet: 'sidemenu'
   },
   {
     path: 'login',
@@ -62,8 +65,13 @@ const appRoutes: Routes = [
     component: CollegeCourseComponent, // CollegeCourse Route
     canActivate: [AuthGuard] //  User must be logged in to view this route
   },
-
-
+  { 
+    path: 'treeview', component: TreeViewComponent 
+  },
+  { 
+    path: 'registrar', component: TreeViewComponent 
+  },
+  
   { path: '**', component: HomeComponent } // "Catch-All" Route
 ];
 

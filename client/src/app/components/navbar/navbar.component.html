@@ -21,7 +21,7 @@
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/registrar">Registrar</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/finance">Finance</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/hr">HR</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/ticketing">Ticketing</a></li>
+        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/genservice">General Services</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/student">Students</a></li>
         <li><a *ngIf="userService.loggedIn()" href="#" (click)="onLogoutClick()">Logout</a></li>
         

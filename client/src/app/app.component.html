@@ -1,7 +1,56 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-navbar></app-navbar>
+<!--<app-navbar></app-navbar>-->
 
-<div class="container">
+<!--<aside>
+<div>
+	<ul class="nav navbar-nav">
+		. . . .
+		<li><a data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in" href="#treeview" [routerLink]="['/treeview']">TreeView </a></li>
+	</ul>
+</div>
+</aside>
+
+<div id="parent" >
+	<input id="btnOpen" style="height: 30px" type="button" ej-button class="ejinputtext" value="Click to open Dialog" (click)="onClick($event)" *ngIf="btndisplay"/>
+	<ej-dialog id="basicDialog" #dialog title="Facebook" [(enableResize)]="resize" containment="#parent" (close)="onClose($event)">
+		Facebook is an online social networking service headquartered in Menlo Park, California. Its website was launched on February
+		4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo Saverin, Andrew McCollum, Dustin
+		Moskovitz and Chris Hughes. The founders had initially limited the website's membership to Harvard students, but later
+		expanded it to colleges in the Boston area, the Ivy League, and Stanford University. It gradually added support for students
+		at various other universities and later to high-school students.
+	</ej-dialog>
+</div>-->
+
+<!--<div class="container">
   <flash-messages></flash-messages>  
   <router-outlet></router-outlet>
+</div>-->
+
+
+
+<nav class="navbar navbar-inverse">
+  <app-navbar></app-navbar>
+</nav>
+  
+<div class="container-fluid">    
+  <div class="row content">
+ 
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 sidenav text-left">
+      <router-outlet name="sidemenu"></router-outlet>    
+    </div>
+ 
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 "> 
+        <flash-messages></flash-messages>  
+        <router-outlet></router-outlet>
+    </div>
+ 
+    <!--<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 sidenav">
+
+    </div>-->
+  </div>
+
 </div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
