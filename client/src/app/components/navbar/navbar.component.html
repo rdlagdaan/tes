@@ -15,10 +15,10 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a *ngIf="!userService.loggedIn()" routerLink="/login">Login</a></li>
+        <li><a *ngIf="!userService.loggedIn()" [routerLink]="[{ outlets: { detail: ['login'] } }]">Login</a></li>
 
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin">Admin</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/registrar">Registrar</a></li>
+        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/registrartopmenu">Registrar</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/finance">Finance</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/hr">HR</a></li>
         <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/genservice">General Services</a></li>

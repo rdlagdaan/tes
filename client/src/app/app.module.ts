@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { Observable } from 'rxjs/Observable';  
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { EJAngular2Module } from 'ej-angular2';
 /*---------------------------
 -COMPONENTS---------------------
@@ -29,6 +29,12 @@ import { ReligionComponent } from './components/religion/religion.component';
 import { CollegeComponent } from './components/college/college.component';
 import { SchoolNameComponent } from './components/school-name/school-name.component';
 import { CollegeCourseComponent } from './components/college-course/college-course.component';
+import { UserComponent } from './components/user/user.component';
+import { BuildingComponent } from './components/building/building.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
+
+import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
+
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
@@ -43,8 +49,6 @@ import { ReligionService } from './services/religion.service';
 import { CollegeService } from './services/college.service';
 import { CitizenshipService } from './services/citizenship.service';
 import { SchoolNameService } from './services/school-name.service';
-import { UserComponent } from './components/user/user.component';
-import { BuildingComponent } from './components/building/building.component';
 
 
 @NgModule({
@@ -60,7 +64,9 @@ import { BuildingComponent } from './components/building/building.component';
     CollegeCourseComponent,
     UserComponent,
     BuildingComponent,
-    TreeViewComponent
+    TreeViewComponent,
+    RegistrarComponent,
+    RegistrarTopmenuComponent
   ],
   imports: [
     BrowserModule, 
@@ -70,11 +76,11 @@ import { BuildingComponent } from './components/building/building.component';
     FlashMessagesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MdButtonModule,
-    MdCardModule,
-    MdIconModule,
-    MdMenuModule,
-    MdToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
     EJAngular2Module.forRoot()
   ],
   providers: [

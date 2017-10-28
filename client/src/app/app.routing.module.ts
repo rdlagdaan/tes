@@ -10,6 +10,9 @@ import { CollegeComponent } from './components/college/college.component';
 import { SchoolNameComponent } from './components/school-name/school-name.component';
 import { CollegeCourseComponent } from './components/college-course/college-course.component';
 
+import { RegistrarComponent } from './components/registrar/registrar.component';
+import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
+
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
 import { AuthGuard } from './guards/auth.guard';
@@ -25,7 +28,8 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent, // Login Route
-    canActivate: [NotAuthGuard] // User must NOT be logged in to view this route
+    canActivate: [NotAuthGuard], // User must NOT be logged in to view this route
+    outlet: "detail"
   },
 
   {
@@ -65,11 +69,16 @@ const appRoutes: Routes = [
     component: CollegeCourseComponent, // CollegeCourse Route
     canActivate: [AuthGuard] //  User must be logged in to view this route
   },
+
+  { 
+    path: 'registrartopmenu', 
+    component: RegistrarTopmenuComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    //outlet: 'topmenu'
+  },
+
   { 
     path: 'treeview', component: TreeViewComponent 
-  },
-  { 
-    path: 'registrar', component: TreeViewComponent 
   },
   
   { path: '**', component: HomeComponent } // "Catch-All" Route
@@ -77,7 +86,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
   providers: [],
   bootstrap: [],
   exports: [RouterModule]

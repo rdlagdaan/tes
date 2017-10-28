@@ -31,7 +31,12 @@
 <nav class="navbar navbar-inverse">
   <app-navbar></app-navbar>
 </nav>
-  
+
+<nav class="navbar">
+  <router-outlet></router-outlet>    
+</nav>
+
+
 <div class="container-fluid">    
   <div class="row content">
  
@@ -41,7 +46,7 @@
  
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 "> 
         <flash-messages></flash-messages>  
-        <router-outlet></router-outlet>
+        <router-outlet name="detail"></router-outlet>
     </div>
  
     <!--<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 sidenav">

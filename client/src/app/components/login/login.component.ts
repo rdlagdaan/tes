@@ -67,11 +67,6 @@ export class LoginComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set bootstrap success class
         this.message = data.message; // Set success message
         // Function to store user's token in client local storage
-        console.log("LOGIN");
-        console.log("DATA TOKEN");
-        console.log(data.token);
-        console.log("DATA USER");
-        console.log(data.user);
         this.userService.storeUserData(data.token, data.user);
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
@@ -79,7 +74,8 @@ export class LoginComponent implements OnInit {
           if (this.previousUrl) {
             this.router.navigate([this.previousUrl]); // Redirect to page they were trying to view before
           } else {
-            this.router.navigate(['/user']); // Navigate to dashboard view
+            this.router.navigate([{ outlets: { detail: null }}]);
+            //this.router.navigate(['/home']); // Navigate to dashboard view
           }
         }, 2000);
       }
