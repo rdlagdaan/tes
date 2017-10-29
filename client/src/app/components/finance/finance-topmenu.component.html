@@ -6,7 +6,7 @@
     
         <span class="align-middle">
                 {{systemName}} 
-                <select (change)="navigateTo($event.target.value)">
+                <select >
                     <option></option>
                     <option *ngFor="let row of privileges"> {{ row.Modules }}</option>
                 </select>

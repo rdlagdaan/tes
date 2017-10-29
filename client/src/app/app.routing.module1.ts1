@@ -12,6 +12,8 @@ import { CollegeCourseComponent } from './components/college-course/college-cour
 
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
+import { FinanceComponent } from './components/finance/finance.component';
+import { FinanceTopmenuComponent } from './components/finance/finance-topmenu.component';
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
@@ -77,6 +79,13 @@ const appRoutes: Routes = [
     //outlet: 'topmenu'
   },
 
+  { 
+    path: 'financetopmenu', 
+    component: FinanceTopmenuComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    //outlet: 'topmenu'
+  },
+  
   { 
     path: 'treeview', component: TreeViewComponent 
   },

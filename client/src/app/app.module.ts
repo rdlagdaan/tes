@@ -34,6 +34,8 @@ import { BuildingComponent } from './components/building/building.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 
 import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
+import { FinanceComponent } from './components/finance/finance.component';
+import { FinanceTopmenuComponent } from './components/finance/finance-topmenu.component';
 
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
@@ -49,6 +51,8 @@ import { ReligionService } from './services/religion.service';
 import { CollegeService } from './services/college.service';
 import { CitizenshipService } from './services/citizenship.service';
 import { SchoolNameService } from './services/school-name.service';
+import { UserPrivilegeService } from './services/user-privilege.service';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 
 @NgModule({
@@ -66,7 +70,10 @@ import { SchoolNameService } from './services/school-name.service';
     BuildingComponent,
     TreeViewComponent,
     RegistrarComponent,
-    RegistrarTopmenuComponent
+    RegistrarTopmenuComponent,
+    FinanceComponent,
+    FinanceTopmenuComponent,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule, 
@@ -86,7 +93,7 @@ import { SchoolNameService } from './services/school-name.service';
   providers: [
     UserService, CollegeCourseService, AuthGuard, 
     NotAuthGuard, ReligionService, CollegeService, 
-    CitizenshipService, SchoolNameService  
+    CitizenshipService, SchoolNameService, UserPrivilegeService  
   ],
   bootstrap: [AppComponent]
 })

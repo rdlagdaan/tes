@@ -6,9 +6,9 @@ module.exports = (router) => {
 
 
     /* ===============================================================
-      GET USER SPECIFIC PRIVILEGES
+      GET USER MODULE PRIVILEGES
     =============================================================== */
-    router.get('/getUserSpecificPrivileges/:UserID/:OrgCode/:GroupSystemID',  (req, res, next) => {
+    router.get('/getUserModulePrivileges/:UserID/:OrgCode/:GroupSystemID',  (req, res, next) => {
         try {
 
             var UserID = req.params.UserID;
@@ -17,12 +17,13 @@ module.exports = (router) => {
 
             console.log(UserID);
 
-            var queryString = "SELECT DISTINCT concat( triune_code_description.Description, ' > ',  REVERSE(SUBSTR(REVERSE(triune_user_privilege.DataElementID), 1+LOCATE('-', REVERSE(triune_user_privilege.DataElementID)))) ) FROM ";
+            var queryString = "SELECT DISTINCT concat( triune_code_description.Code, '>',  REVERSE(SUBSTR(REVERSE(triune_user_privilege.DataElementID), 1+LOCATE('-', REVERSE(triune_user_privilege.DataElementID)))) ) as Modules FROM ";
             queryString += queryString = "triune_user_privilege ";
             queryString += queryString = "LEFT JOIN triune_code_description ON triune_user_privilege.SourceSystemID = triune_code_description.`Code` ";
             queryString += queryString = "WHERE triune_user_privilege.UserID = ? AND ";
-            queryString += queryString = "triune_user_privilege.OrgCode = ? AND  triune_user_privilege.GroupSystemID = ?"
-
+            queryString += queryString = "triune_user_privilege.OrgCode = ? AND  triune_user_privilege.GroupSystemID = ? ";
+            queryString += queryString = "ORDER BY Modules ASC "
+            
             req.getConnection(function (err, conn) {
                 if (err) {
                     console.error('SQL Connection error: ', err);
