@@ -164,7 +164,8 @@ module.exports = (router) => {
                                             message: 'Success!',
                                             token: token,
                                             user: {
-                                                UserID: rows[0].UserID
+                                                UserID: rows[0].UserID,
+                                                CompanyNameUser: rows[0].CompanyNameUser
                                             }
                                             }); // Return success and token to frontend                           
                                         }

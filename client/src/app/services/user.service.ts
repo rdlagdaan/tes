@@ -11,6 +11,7 @@ export class UserService {
   userToken;
   user;
   options;
+  sw;
 
   constructor( private http: Http ) { }
 
@@ -36,6 +37,9 @@ export class UserService {
   storeUserData(token, user) {
     localStorage.setItem('token', token); // Set token in local storage
     localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
+    localStorage.setItem('UserID', user.UserID); // Set UserID in local storage
+    localStorage.setItem('CompanyNameUser', user.CompanyNameUser); // Set CompanyNameUser in local storage
+    
     this.userToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
   }
@@ -65,7 +69,16 @@ export class UserService {
   login(user) {
     return this.http.post(this.domain + 'userCrud/login', user).map(res => res.json());
   }
-  
+
+   // Function to login user
+  loggedSwitch() {
+    return this.sw;
+  }
+ 
+  setLoggedSwitch(sw) {
+    this.sw = sw;
+  }
+
   // Function to logout
   logout() {
     this.userToken = null; // Set token to null

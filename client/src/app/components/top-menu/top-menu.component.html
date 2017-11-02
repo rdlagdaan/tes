@@ -1,3 +1,19 @@
-<p>
-  top-menu works!
-</p>
+<div class="container-fluid" >    
+  <div class="row content topmenu">
+ 
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left ">
+  
+      <span class="align-middle" *ngIf="privileges?.length > 0">
+              {{systemName}} 
+              <select (change)="navigateTo($event.target.value)">
+                  <option></option>
+                  <option *ngFor="let row of privileges"> {{ row.Modules }}</option>
+              </select>
+      </span> 
+      <span class="align-middle" *ngIf="privileges?.length <= 0">
+          No Rights Provided!!!
+      </span>
+  </div>
+  </div>
+</div>
+

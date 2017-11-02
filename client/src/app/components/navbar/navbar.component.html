@@ -14,20 +14,23 @@
       <ul class="nav navbar-nav navbar-left">
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
       </ul>
+ 
       <ul class="nav navbar-nav navbar-right">
         <li><a *ngIf="!userService.loggedIn()" [routerLink]="[{ outlets: { detail: ['login'] } }]">Login</a></li>
-
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin">Admin</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/registrartopmenu">Registrar</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/financetopmenu">Finance</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/hr">HR</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/genservice">General Services</a></li>
-        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/student">Students</a></li>
+ 
         <li><a *ngIf="userService.loggedIn()" href="#" (click)="onLogoutClick()">Logout</a></li>
         
       </ul>
+ 
 
+      <ul class="nav navbar-nav navbar-right">
+          <ng-container *ngFor="let row of privileges">
+            <ng-container *ngIf="userService.loggedIn()">
+              <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/topmenu', row.Code]">{{row.Description}}</a></li>
+            </ng-container>
+          </ng-container>
 
+      </ul>
 
     </div>
     <!--/.nav-collapse -->

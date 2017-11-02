@@ -35,5 +35,11 @@ export class UserPrivilegeService {
   }
 
 
+  // Function to get specific user privileges data
+  getUserGroupPrivileges(UserID, OrgCode) {
+    this.createHeaders(); // Create headers before sending to API
+    return this.http.get(this.domain + 'userPrivilegeCrud/getUserGroupPrivileges/'+ UserID + '/' + OrgCode, this.options).map(res => res.json());
+  }
+  
 
 }

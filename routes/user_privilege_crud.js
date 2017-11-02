@@ -51,6 +51,52 @@ module.exports = (router) => {
 
 
 
+
+    /* ===============================================================
+      GET USER GROUP PRIVILEGES
+    =============================================================== */
+    router.get('/getUserGroupPrivileges/:UserID/:OrgCode',  (req, res, next) => {
+        try {
+
+            var UserID = req.params.UserID;
+            var OrgCode = req.params.OrgCode;
+
+            console.log(UserID);
+
+            var queryString = "SELECT DISTINCT triune_code_description.`Code`, triune_code_description.Description FROM ";
+            queryString += queryString = "triune_code_description ";
+            queryString += queryString = "INNER JOIN triune_user_privilege ON triune_user_privilege.GroupSystemID = triune_code_description.`Code` ";
+            queryString += queryString = "WHERE triune_user_privilege.OrgCode = ? AND triune_user_privilege.UserID = ? ";
+            queryString += queryString = "ORDER BY triune_code_description.Description ASC "
+            
+            req.getConnection(function (err, conn) {
+                if (err) {
+                    console.error('SQL Connection error: ', err);
+                    return next(err);
+                } else {
+                    conn.query(queryString, [OrgCode, UserID], function (err, rows, fields) {
+                        if (err) {
+                            console.error('SQL error: ', err);
+                            return next(err);
+                        }
+                        var resUserPrivilege = [];
+                        for (var userPrivilegeIndex in rows) {
+                            var userPrivilegeObj = rows[userPrivilegeIndex];
+                            resUserPrivilege.push(userPrivilegeObj);
+                        }
+                        res.json(resUserPrivilege);
+                    });
+                }
+            });
+        } catch (ex) {
+            console.error("Internal error:" + ex);
+            return next(ex);
+        }
+    });
+
+    
+
+
     return router; // Return router object to main index.js
 
 }

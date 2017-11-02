@@ -11,9 +11,8 @@ import { SchoolNameComponent } from './components/school-name/school-name.compon
 import { CollegeCourseComponent } from './components/college-course/college-course.component';
 
 import { RegistrarComponent } from './components/registrar/registrar.component';
-import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
 import { FinanceComponent } from './components/finance/finance.component';
-import { FinanceTopmenuComponent } from './components/finance/finance-topmenu.component';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
@@ -71,21 +70,14 @@ const appRoutes: Routes = [
     component: CollegeCourseComponent, // CollegeCourse Route
     canActivate: [AuthGuard] //  User must be logged in to view this route
   },
-
   { 
-    path: 'registrartopmenu', 
-    component: RegistrarTopmenuComponent, 
-    canActivate: [AuthGuard], //  User must be logged in to view this route
-    //outlet: 'topmenu'
-  },
-
-  { 
-    path: 'financetopmenu', 
-    component: FinanceTopmenuComponent, 
+    path: 'topmenu/:groupSystemID', 
+    component: TopMenuComponent, 
     canActivate: [AuthGuard], //  User must be logged in to view this route
     //outlet: 'topmenu'
   },
   
+
   { 
     path: 'treeview', component: TreeViewComponent 
   },
@@ -95,7 +87,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
+  imports: [RouterModule.forRoot(appRoutes, { enableTracing: false }) ],
   providers: [],
   bootstrap: [],
   exports: [RouterModule]

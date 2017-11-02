@@ -32,10 +32,8 @@ import { CollegeCourseComponent } from './components/college-course/college-cour
 import { UserComponent } from './components/user/user.component';
 import { BuildingComponent } from './components/building/building.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
-
-import { RegistrarTopmenuComponent } from './components/registrar/registrar-topmenu.component';
 import { FinanceComponent } from './components/finance/finance.component';
-import { FinanceTopmenuComponent } from './components/finance/finance-topmenu.component';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
@@ -52,7 +50,6 @@ import { CollegeService } from './services/college.service';
 import { CitizenshipService } from './services/citizenship.service';
 import { SchoolNameService } from './services/school-name.service';
 import { UserPrivilegeService } from './services/user-privilege.service';
-import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 
 @NgModule({
@@ -70,9 +67,7 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
     BuildingComponent,
     TreeViewComponent,
     RegistrarComponent,
-    RegistrarTopmenuComponent,
     FinanceComponent,
-    FinanceTopmenuComponent,
     TopMenuComponent
   ],
   imports: [
