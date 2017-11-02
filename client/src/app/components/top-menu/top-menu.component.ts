@@ -10,7 +10,6 @@ import { UserPrivilegeService } from '../../services/user-privilege.service';
 })
 export class TopMenuComponent implements OnInit, OnDestroy {
 
-  currentUrl;
   systemName;
   companyName;
   UserID;
