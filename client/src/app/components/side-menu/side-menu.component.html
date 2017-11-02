@@ -1,0 +1,8 @@
+<ul >
+  <ng-container *ngFor="let row of privileges">
+    <ng-container *ngIf="userService.loggedIn()">
+      <li  (click)="navigate()">{{row.ElementValueID}}</li>
+    </ng-container>
+  </ng-container>
+
+</ul>

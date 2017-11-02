@@ -45,22 +45,36 @@ export class TopMenuComponent implements OnInit, OnDestroy {
 
   navigateTo(value) {
     
-    var string1 = value.indexOf('>');
-    var string2 = value.indexOf('-');
+
+    this.subscription = this.activatedRoute.params.subscribe(params => {
+      this.systemName = params['groupSystemID']; // (+) converts string 'id' to a number
+
+
+      var string1 = value.indexOf('>');
+      var string2 = value.indexOf('-');
+      
+      var sourceSystemID = value.substring(0, string1);
+      var linkPath2 = value.substring(string1+1, string2);
+      var linkPath3 = value.substring(string2+1, value.length);
+      var dataElementID = linkPath2 + '-' +linkPath3;
+      
+      if (value) {
+          this.router.navigate([{ outlets: { sidemenu: ['sidemenu', this.systemName, sourceSystemID, dataElementID] }}]);
+      }
+
+      console.log("hey");
+      console.log(sourceSystemID);
+      console.log(linkPath2);
+      console.log(linkPath3);
+      console.log(this.systemName);
+
+      
+      return false;
+      
+    });
     
-    var linkPath1 = value.substring(0, string1);
-    var linkPath2 = value.substring(string1+1, string2);
-    var linkPath3 = value.substring(string2+1, value.length);
-    
-    /*if (value) {
-        this.router.navigate([{ outlets: { sidemenu: value }}]);
-    }
-    return false;*/
-    console.log("hey");
-    console.log(linkPath1);
-    console.log(linkPath2);
-    console.log(linkPath3);
-    
+
+
   }
 
 }

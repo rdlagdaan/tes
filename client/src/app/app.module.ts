@@ -34,6 +34,8 @@ import { BuildingComponent } from './components/building/building.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { FinanceComponent } from './components/finance/finance.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { DetailRecordsComponent } from './components/detail-records/detail-records.component';
 
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
@@ -68,7 +70,9 @@ import { UserPrivilegeService } from './services/user-privilege.service';
     TreeViewComponent,
     RegistrarComponent,
     FinanceComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    SideMenuComponent,
+    DetailRecordsComponent
   ],
   imports: [
     BrowserModule, 

@@ -41,5 +41,11 @@ export class UserPrivilegeService {
     return this.http.get(this.domain + 'userPrivilegeCrud/getUserGroupPrivileges/'+ UserID + '/' + OrgCode, this.options).map(res => res.json());
   }
   
+  // Function to get specific user privileges data
+  getUserMenuPrivileges(UserID, OrgCode, systemName, sourceSystemID, dataElementID) {
+    this.createHeaders(); // Create headers before sending to API
+    return this.http.get(this.domain + 'userPrivilegeCrud/getUserMenuPrivileges/'+ UserID + '/' + OrgCode + '/' + systemName + '/' + sourceSystemID + '/' + dataElementID, this.options).map(res => res.json());
+  }
+
 
 }

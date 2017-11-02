@@ -94,7 +94,62 @@ module.exports = (router) => {
         }
     });
 
+
     
+    /* ===============================================================
+      GET USER MENU PRIVILEGES
+    =============================================================== */
+    router.get('/getUserMenuPrivileges/:UserID/:OrgCode/:groupSystemID/:sourceSystemID/:dataElementID',  (req, res, next) => {
+        try {
+
+            var UserID = req.params.UserID;
+            var OrgCode = req.params.OrgCode;
+            var groupSystemID = req.params.groupSystemID;
+            var sourceSystemID = req.params.sourceSystemID;
+            var dataElementID = req.params.dataElementID;
+            
+            console.log(UserID);
+            console.log(OrgCode);
+            console.log(groupSystemID);
+            console.log(sourceSystemID);
+            console.log(dataElementID);
+            
+
+            var queryString = "SELECT DISTINCT triune_user_privilege.ElementValueID, triune_user_privilege.OrgCode, triune_user_privilege.GroupSystemID, triune_user_privilege.SourceSystemID, triune_user_privilege.DataElementID FROM triune_user_privilege WHERE ";
+            queryString += queryString = "triune_user_privilege.OrgCode = ? AND ";
+            queryString += queryString = "triune_user_privilege.GroupSystemID = ? AND ";
+            queryString += queryString = "triune_user_privilege.SourceSystemID = ? AND ";
+            queryString += queryString = "triune_user_privilege.DataElementID = ? AND ";
+            queryString += queryString = "triune_user_privilege.UserID = ? ";
+            queryString += queryString = "ORDER BY triune_user_privilege.ElementValueID ASC ";
+            
+            
+            req.getConnection(function (err, conn) {
+                if (err) {
+                    console.error('SQL Connection error: ', err);
+                    return next(err);
+                } else {
+                    conn.query(queryString, [OrgCode, groupSystemID, sourceSystemID, dataElementID, UserID], function (err, rows, fields) {
+                        if (err) {
+                            console.error('SQL error: ', err);
+                            return next(err);
+                        }
+                        var resUserPrivilege = [];
+                        for (var userPrivilegeIndex in rows) {
+                            var userPrivilegeObj = rows[userPrivilegeIndex];
+                            resUserPrivilege.push(userPrivilegeObj);
+                        }
+                        res.json(resUserPrivilege);
+                    });
+                }
+            });
+        } catch (ex) {
+            console.error("Internal error:" + ex);
+            return next(ex);
+        }
+    });
+
+
 
 
     return router; // Return router object to main index.js
