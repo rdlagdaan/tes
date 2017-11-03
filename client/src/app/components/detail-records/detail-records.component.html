@@ -1,1 +1,37 @@
 {{systemName}}, {{dataElementID}}, {{elementValueID}}, {{sourceSystemID}}, {{UserID}}
+<div class="container-fluid" *ngIf="records">
+  
+ <div class="container-fluid col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+
+    <table id="myTable" class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>-</th>
+          <th>-</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>UserID</th>
+          <th>EmailAddress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of records">
+          <td>
+            <button type="button" name="button" class="btn btn-sm btn-info" (click)="editUser(row.ID)">Edit</button>
+          </td>  
+          <td>
+            <button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteUser(row.ID)">Delete</button>
+          </td>
+          <td>{{row.FirstNameUser}}</td>  
+          <td>{{row.LastNameUser}}</td>  
+          <td>{{row.UserID}}</td>  
+          <td>{{row.EmailAddress}}</td>  
+        </tr>
+      </tbody>
+    </table>          
+
+
+
+ </div>
+
+</div>  

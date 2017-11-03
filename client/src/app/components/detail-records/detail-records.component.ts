@@ -10,7 +10,7 @@ import { UserPrivilegeService } from '../../services/user-privilege.service';
   templateUrl: './detail-records.component.html',
   styleUrls: ['./detail-records.component.css']
 })
-export class DetailRecordsComponent implements OnInit {
+export class DetailRecordsComponent implements OnInit, OnDestroy {
 
   systemName;
   companyName;
@@ -19,7 +19,7 @@ export class DetailRecordsComponent implements OnInit {
   dataElementID;
   elementValueID;
   sourceSystemID;
-  
+  records;
 
   constructor(
     private router: Router,
@@ -28,9 +28,12 @@ export class DetailRecordsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
+  ngOnDestroy() {
+  }
 
+  ngOnInit() {
     this.subscription = this.activatedRoute.params.subscribe(params => {
+      this.records = null;
       this.systemName = params['groupSystemID']; // (+) converts string 'id' to a number
       this.UserID = localStorage.getItem('UserID');
       this.companyName = localStorage.getItem('CompanyNameUser');
@@ -44,15 +47,16 @@ export class DetailRecordsComponent implements OnInit {
       //  this.privileges = privilegelist;
       //});
 
-
-
       } else if(this.dataElementID == "SUMMARY-Grade-MNU") {
         console.log(this.dataElementID)
-       //this.userPrivilegeService.getUserModulePrivileges(this.UserID, this.companyName, this.systemName).subscribe(privilegelist => {
-      //  this.privileges = privilegelist;
-      //});
-       
+
+      } else if(this.dataElementID == "ACCOUNTS-Users-MNU") {
+
+        this.userService.getUsers().subscribe(recordlist => {
+          this.records = recordlist;
+        });      
       }
+ 
     });
     
 
