@@ -48,8 +48,6 @@ export class TopMenuComponent implements OnInit, OnDestroy {
 
     this.subscription = this.activatedRoute.params.subscribe(params => {
       this.systemName = params['groupSystemID']; // (+) converts string 'id' to a number
-
-
       var string1 = value.indexOf('>');
       var string2 = value.indexOf('-');
       
@@ -61,14 +59,6 @@ export class TopMenuComponent implements OnInit, OnDestroy {
       if (value) {
           this.router.navigate([{ outlets: { sidemenu: ['sidemenu', this.systemName, sourceSystemID, dataElementID] }}]);
       }
-
-      console.log("hey");
-      console.log(sourceSystemID);
-      console.log(linkPath2);
-      console.log(linkPath3);
-      console.log(this.systemName);
-
-      
       return false;
       
     });

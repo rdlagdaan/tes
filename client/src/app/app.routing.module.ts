@@ -86,7 +86,7 @@ const appRoutes: Routes = [
   },
   
   { 
-    path: 'detailrecords', 
+    path: 'detailrecords/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
     component: DetailRecordsComponent, 
     canActivate: [AuthGuard], //  User must be logged in to view this route
     outlet: 'detail'

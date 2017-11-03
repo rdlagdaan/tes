@@ -1,7 +1,7 @@
 <ul >
   <ng-container *ngFor="let row of privileges">
     <ng-container *ngIf="userService.loggedIn()">
-      <li  (click)="navigate()">{{row.ElementValueID}}</li>
+      <li  (click)="navigate(row)">{{row.ElementValueID}}</li>
     </ng-container>
   </ng-container>
 

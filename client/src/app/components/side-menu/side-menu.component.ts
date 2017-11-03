@@ -46,7 +46,10 @@ export class SideMenuComponent implements OnInit {
 
   }
 
-  navigate() {
-    this.router.navigate([{ outlets: { detail: ['detailrecords'] }}]);
+  navigate(data) {
+
+      console.log(data.SourceSystemID);
+      this.router.navigate([{ outlets: { detail: ['detailrecords',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      return false;
   }
 }
