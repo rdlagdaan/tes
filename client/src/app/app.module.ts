@@ -12,11 +12,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppRoutingModule } from './app.routing.module';
 
+import {SelectModule} from 'ng2-select';
 import { Observable } from 'rxjs/Observable';  
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { EJAngular2Module } from 'ej-angular2';
+import {AutoCompleteModule} from 'primeng/primeng';
+
 /*---------------------------
 -COMPONENTS---------------------
 -----------------------------*/
@@ -87,7 +90,9 @@ import { UserPrivilegeService } from './services/user-privilege.service';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    EJAngular2Module.forRoot()
+    EJAngular2Module.forRoot(),
+    SelectModule,
+    AutoCompleteModule
   ],
   providers: [
     UserService, CollegeCourseService, AuthGuard, 

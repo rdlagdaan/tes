@@ -27,6 +27,8 @@
     "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "ej-angular2": "^15.3.34",
+    "ng2-select": "^1.2.0",
+    "primeng": "^5.0.0-rc.0",
     "rxjs": "^5.4.2",
     "sweetalert2": "^6.11.0",
     "syncfusion-javascript": "^15.3.33",
