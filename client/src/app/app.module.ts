@@ -18,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { EJAngular2Module } from 'ej-angular2';
-import {AutoCompleteModule} from 'primeng/primeng';
+//import {AutoCompleteModule} from 'primeng/primeng';
 
 /*---------------------------
 -COMPONENTS---------------------
@@ -91,8 +91,7 @@ import { UserPrivilegeService } from './services/user-privilege.service';
     MatMenuModule,
     MatToolbarModule,
     EJAngular2Module.forRoot(),
-    SelectModule,
-    AutoCompleteModule
+    SelectModule
   ],
   providers: [
     UserService, CollegeCourseService, AuthGuard, 

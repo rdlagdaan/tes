@@ -10,9 +10,9 @@
                   <option *ngFor="let row of privileges"> {{ row.Modules }}</option>
               </select> 
 
-              <p-autoComplete [(ngModel)]="row" [suggestions]="privileges" (completeMethod)="privileges($event)" field="name" [size]="30"
+           <!--   <p-autoComplete [(ngModel)]="row" [suggestions]="privileges" (completeMethod)="privileges($event)" field="name" [size]="30"
               placeholder="Modules" [minLength]="1"></p-autoComplete>
-          <span style="margin-left:10px">Modules: {{row ? row.Modules||row : 'none'}}</span>
+          <span style="margin-left:10px">Modules: {{row ? row.Modules||row : 'none'}}</span>-->
 
       </span> 
       <span class="align-middle" *ngIf="privileges?.length <= 0">
