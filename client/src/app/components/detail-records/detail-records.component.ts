@@ -130,17 +130,28 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
       }
       this.refreshItems();
    }
-   nextPage(){
-      if(this.currentIndex < this.pageNumber){
+
+   nextPage(DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID){
+      /*if(this.currentIndex < this.pageNumber){
             this.currentIndex ++;
       }
       if(this.currentIndex >= (this.pageStart + this.pages)){
          this.pageStart = this.currentIndex - this.pages + 1;
       }
  
-      this.refreshItems();
+      this.refreshItems();*/
+
+      console.log("HEY");
+      console.log(DataElementID);
+      console.log(ElementValueID);
+      
+      this.router.navigate([{ outlets: { detail: ['detailrecords', DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID] }}]);
+      return false;
+    
    }
-    setPage(index : number){
+
+
+   setPage(index : number){
          this.currentIndex = index;
          this.refreshItems();
     }
