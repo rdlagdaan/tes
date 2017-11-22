@@ -18,7 +18,8 @@ const originSchoolDetailsCrud = require('./routes/origin_school_details_crud')(r
 const buildingCrud = require('./routes/building_crud')(router); // Import Building Crud Routes
 const roomCrud = require('./routes/room_crud')(router); // Import Room Crud Routes
 
-const userPrivilegeCrud = require('./routes/user_privilege_crud')(router); // Import Room Crud Routes
+const userPrivilegeCrud = require('./routes/user_privilege_crud')(router); // Import User Privilege Crud Routes
+const personalProfileCrud = require('./routes/personal_profile_crud')(router); // Import Personal Profile Crud Routes
 
 
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
@@ -37,7 +38,6 @@ app.use(connection(mysql, {
 }, 'request'));
 
 
-// Middleware
 // Middleware
 app.use(function(req, res, next) { //allow cross origin requests
   res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -64,6 +64,8 @@ app.use('/schoolnameCrud', schoolnameCrud); // Use School Name Crud routes in ap
 app.use('/buildingCrud', buildingCrud); // Use Building Crud routes in application
 app.use('/roomCrud', roomCrud); // Use Room Crud routes in application
 app.use('/userPrivilegeCrud', userPrivilegeCrud); // Use User Privilege Crud routes in application
+app.use('/personalProfileCrud', personalProfileCrud); // Use Personal Profile Crud routes in application
+
 
 // Connect server to Angular 2 Index.html
 //app.get('*', (req, res) => {

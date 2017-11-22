@@ -21,14 +21,14 @@ class User {
 })
 export class DetailRecordsComponent implements OnInit, OnDestroy {
 
-  systemName;
+  groupSystem;
   companyName;
   UserID;
   private subscription: any;
   dataElementID;
   elementValueID;
   sourceSystemID;
-  records: User[];
+  users: User[];
   
     filteredItems : User[];
     pages : number = 2;
@@ -59,13 +59,19 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.activatedRoute.params.subscribe(params => {
-      this.records = null;
-      this.systemName = params['groupSystemID']; // (+) converts string 'id' to a number
-      this.UserID = localStorage.getItem('UserID');
-      this.companyName = localStorage.getItem('CompanyNameUser');
-      this.dataElementID = params['dataElementID']; // (+) converts string 'id' to a number
-      this.elementValueID = params['elementValueID']; // (+) converts string 'id' to a number
-      this.sourceSystemID = params['sourceSystemID']; // (+) converts string 'id' to a number
+      this.users = null;
+      this.groupSystem = params['groupSystemID']; // groupSystemID
+      this.UserID = localStorage.getItem('UserID'); //UserID
+      this.companyName = localStorage.getItem('CompanyNameUser'); //companyName
+      this.dataElementID = params['dataElementID']; // dataElementID
+      this.elementValueID = params['elementValueID']; // elementValueID
+      this.sourceSystemID = params['sourceSystemID']; // sourceSystemID
+
+
+      this.currentIndex = 1;
+      this.pageStart = 1;
+      this.pages = 4;
+    
       
       if(this.dataElementID == "K12-Promotion-MNU") {
         console.log(this.dataElementID)
@@ -78,15 +84,12 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
 
       } else if(this.dataElementID == "ACCOUNTS-Users-MNU") {
 
-        this.userService.getUsers().subscribe(recordlist => {
-          this.records = recordlist;
-          this.filteredItems = this.records;
-          
-       
-          this.currentIndex = 1;
-          this.pageStart = 1;
-          this.pages = 4;
+        this.userService.getUsers().subscribe(userlist => {
+          this.users = userlist;
+          this.filteredItems = this.users;
 
+          console.log("PAGE START");
+          console.log(this.pageStart);
           this.pageNumber = parseInt(""+ (this.filteredItems.length / this.pageSize));
           if(this.filteredItems.length % this.pageSize != 0){
               this.pageNumber ++;
@@ -98,10 +101,16 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
       
           this.refreshItems();
           console.log("this.pageNumber :  "+this.pageNumber);
-       
+
         });      
       }
  
+
+
+
+
+
+
     });
 
 
@@ -121,14 +130,18 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
     this.pagesIndex =  this.fillArray();
 }
 
-   prevPage(){
-      if(this.currentIndex>1){
+   prevPage(DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID){
+      /*if(this.currentIndex>1){
          this.currentIndex --;
       } 
       if(this.currentIndex < this.pageStart){
          this.pageStart = this.currentIndex;
       }
-      this.refreshItems();
+      this.refreshItems();*/
+
+      this.router.navigate([{ outlets: { detail: ['detailrecords', DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID] }}]);
+      return false;
+
    }
 
    nextPage(DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID){
@@ -140,10 +153,6 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
       }
  
       this.refreshItems();*/
-
-      console.log("HEY");
-      console.log(DataElementID);
-      console.log(ElementValueID);
       
       this.router.navigate([{ outlets: { detail: ['detailrecords', DataElementID , ElementValueID , GroupSystemID , OrgCode, SourceSystemID] }}]);
       return false;

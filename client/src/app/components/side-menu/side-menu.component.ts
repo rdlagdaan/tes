@@ -34,6 +34,7 @@ export class SideMenuComponent implements OnInit {
       this.sourceSystemID = params['sourceSystemID']; // (+) converts string 'id' to a number
       this.dataElementID = params['dataElementID']; // (+) converts string 'id' to a number
       
+      
       this.UserID = localStorage.getItem('UserID');
       this.companyName = localStorage.getItem('CompanyNameUser');
       this.userPrivilegeService.getUserMenuPrivileges(this.UserID, this.companyName, this.systemName, this.sourceSystemID, this.dataElementID + '-MNU').subscribe(privilegelist => {
@@ -48,7 +49,7 @@ export class SideMenuComponent implements OnInit {
 
   navigate(data) {
 
-      console.log(data.SourceSystemID);
+      console.log(data);
       this.router.navigate([{ outlets: { detail: ['detailrecords',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
       return false;
   }
