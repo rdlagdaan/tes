@@ -73,3 +73,39 @@
   </div>
 </div>
 
+
+
+<div *ngIf="personalInfos" class='panel-body'>
+  <table class="table table-bordered table-condensed ">
+     <thead>
+        <th>StudentNumber</th>
+        <th>LastName</th>
+        <th>FirstName</th>
+        <th>MiddleName</th>
+      </thead>
+     <tbody>
+        <tr *ngFor="let row of personalInfos"
+         [class.selected]="product === selectedProduct"
+         (click) = onSelect(product)>
+          <td>{{row.StudentNumber}}</td>  
+          <td>{{row.LNameStudent}}</td>  
+          <td>{{row.FNameStudent}}</td>  
+          <td>{{row.MNameStudent}}</td>  
+        </tr>
+     </tbody>
+  </table>
+  <div class="btn-toolbar" role="toolbar" style="margin: 0;">
+   <div class="btn-group">
+        <label style="margin-top:10px">Page {{currentIndex}}/{{pageNumber}}</label>
+     </div>
+     <div class="btn-group pull-right">
+        <ul class="pagination" >
+           <li [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}" ><a  (click)="prevPage(dataElementID , elementValueID , systemName , companyName, sourceSystemID)" href="#">Prev</a></li>
+              <li *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}">
+                 <a (click)="setPage(page)" href="#" >{{page}}</a>
+              </li>
+           <li [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}" ><a   (click)="nextPage(dataElementID , elementValueID , systemName , companyName, sourceSystemID)" href="#">Next</a></li>
+        </ul>
+     </div>
+  </div>
+</div>

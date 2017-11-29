@@ -156,28 +156,36 @@ module.exports = (router) => {
 
 
 
-
     /* ===============================================================
     GET ALL PERSONAL PROFILES
     =============================================================== */
-    router.get('/getPersonalProfiles', function(req, res, next) {
+    router.get('/getPersonalProfiles/:start/:limit', function(req, res, next) {
         try {
+
+            var start = parseInt(req.params.start);
+            var limit = parseInt(req.params.limit);
+
+            var queryString = "select * from triune_personal_information ";
+            queryString += queryString = "order by triune_personal_information.LNameStudent asc, triune_personal_information.FNameStudent asc ";
+            queryString += queryString = "limit ?, ? ";
+
+
                 req.getConnection(function(err, conn) {
                     if (err) {
                         console.error('SQL Connection error: ', err);
                         return next(err);
                     } else {
-                        conn.query('select * from triune_personal_profile', function(err, rows, fields) {
+                        conn.query(queryString, [start, limit], function(err, rows, fields) {
                             if (err) {
                                 console.error('SQL error: ', err);
                                 return next(err);
                             }
-                            var res = [];
+                            var rec = [];
                             for (var index in rows) {
                                 var obj = rows[index];
-                                res .push(obj);
+                                rec.push(obj);
                             }
-                            res.json(res);
+                            res.json(rec);
                         });
                     }
                 });

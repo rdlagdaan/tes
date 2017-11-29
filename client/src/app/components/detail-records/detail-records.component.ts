@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'; 
 import { UserService } from '../../services/user.service';
 import { UserPrivilegeService } from '../../services/user-privilege.service';
+import { PersonalInformationService } from '../../services/personal-information.service';
 
 
 class User {
@@ -10,6 +11,14 @@ class User {
   LastNameUser: string;
   UserID: string;
   EmailAddress: string;
+}
+
+
+class PersonalInfo {
+  StudentNumber: string;
+  LNameStudent: string;
+  FNameStudent: string;
+  MNameStudent: string;
 }
 
 
@@ -29,8 +38,13 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
   elementValueID;
   sourceSystemID;
   users: User[];
+  personalInfos: PersonalInfo[];
   
+  
+
     filteredItems : User[];
+    personalInfoItems : PersonalInfo[];
+    
     pages : number = 2;
     pageSize : number = 2;
     pageNumber : number = 0;
@@ -47,6 +61,7 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
     private router: Router,
     private userService: UserService,
     private userPrivilegeService: UserPrivilegeService,
+    private personalInformationService: PersonalInformationService,
     private activatedRoute: ActivatedRoute,
   ) 
   { 
@@ -60,6 +75,8 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.activatedRoute.params.subscribe(params => {
       this.users = null;
+      this.personalInfos = null;
+      
       this.groupSystem = params['groupSystemID']; // groupSystemID
       this.UserID = localStorage.getItem('UserID'); //UserID
       this.companyName = localStorage.getItem('CompanyNameUser'); //companyName
@@ -103,10 +120,37 @@ export class DetailRecordsComponent implements OnInit, OnDestroy {
           console.log("this.pageNumber :  "+this.pageNumber);
 
         });      
+      } else if(this.dataElementID == 'OAR-PersonalProfile-MNU') {
+
+        var start = 0;
+        var limit = 20;
+
+        this.personalInformationService.getPersonalProfilesBatch(start, limit).subscribe(reclist => {
+          this.personalInfos = reclist;
+          this.personalInfoItems = this.personalInfos;
+
+          console.log("PAGE START");
+          console.log(this.pageStart);
+          this.pageNumber = parseInt(""+ (this.personalInfoItems.length / this.pageSize));
+          if(this.personalInfoItems.length % this.pageSize != 0){
+              this.pageNumber ++;
+          }
+      
+          if(this.pageNumber  < this.pages){
+              this.pages =  this.pageNumber;
+          }
+      
+          this.refreshItems();
+          console.log("this.pageNumber :  "+this.pageNumber);
+
+        });      
+        
+
+
       }
  
 
-
+      
 
 
 

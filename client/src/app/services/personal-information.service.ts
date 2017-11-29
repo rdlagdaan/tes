@@ -29,9 +29,9 @@ export class PersonalInformationService {
 
 
     // Function to get Personal Profiles data
-    getPersonalProfiles() {
+    getPersonalProfilesBatch(start, limit) {
       this.createHeaders(); // Create headers before sending to API
-      return this.http.get(this.domain + 'personalProfileCrud/getPersonalProfiles', this.options).map(res => res.json());
+      return this.http.get(this.domain + 'personalProfileCrud/getPersonalProfiles/' + start + '/' + limit, this.options).map(res => res.json());
     }
   
 

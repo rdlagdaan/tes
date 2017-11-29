@@ -55,6 +55,7 @@ import { CollegeService } from './services/college.service';
 import { CitizenshipService } from './services/citizenship.service';
 import { SchoolNameService } from './services/school-name.service';
 import { UserPrivilegeService } from './services/user-privilege.service';
+import { PersonalInformationService } from './services/personal-information.service';
 
 
 @NgModule({
@@ -96,7 +97,7 @@ import { UserPrivilegeService } from './services/user-privilege.service';
   providers: [
     UserService, CollegeCourseService, AuthGuard, 
     NotAuthGuard, ReligionService, CollegeService, 
-    CitizenshipService, SchoolNameService, UserPrivilegeService  
+    CitizenshipService, SchoolNameService, UserPrivilegeService, PersonalInformationService  
   ],
   bootstrap: [AppComponent]
 })
