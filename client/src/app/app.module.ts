@@ -39,6 +39,7 @@ import { FinanceComponent } from './components/finance/finance.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DetailRecordsComponent } from './components/detail-records/detail-records.component';
+import { HelloWorldComponent } from './components/hello-world/hello-world.component';
 
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
@@ -76,7 +77,8 @@ import { PersonalInformationService } from './services/personal-information.serv
     FinanceComponent,
     TopMenuComponent,
     SideMenuComponent,
-    DetailRecordsComponent
+    DetailRecordsComponent,
+    HelloWorldComponent
   ],
   imports: [
     BrowserModule, 

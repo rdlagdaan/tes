@@ -15,6 +15,7 @@ import { FinanceComponent } from './components/finance/finance.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DetailRecordsComponent } from './components/detail-records/detail-records.component';
+import { HelloWorldComponent } from './components/hello-world/hello-world.component';
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
@@ -85,9 +86,16 @@ const appRoutes: Routes = [
     outlet: 'sidemenu'
   },
   
-  { 
+  /*{ 
     path: 'detailrecords/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
     component: DetailRecordsComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    outlet: 'detail'
+  },*/
+
+  { 
+    path: 'detailrecords/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    component: HelloWorldComponent, 
     canActivate: [AuthGuard], //  User must be logged in to view this route
     outlet: 'detail'
   },

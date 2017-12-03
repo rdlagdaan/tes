@@ -48,7 +48,7 @@ app.use(function(req, res, next) { //allow cross origin requests
 });
 
 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: 'http://localhost:4400' }));
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use('/userCrud', userCrud); // Use User Crud routes in application
