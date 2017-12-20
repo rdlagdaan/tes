@@ -16,6 +16,10 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DetailRecordsComponent } from './components/detail-records/detail-records.component';
 import { HelloWorldComponent } from './components/hello-world/hello-world.component';
+import { TemplateSyntaxPropertiesComponent } from './components/template-syntax-properties/template-syntax-properties.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { CollapsibleComponent } from './components/collapsible/collapsible.component';
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
 
@@ -86,19 +90,49 @@ const appRoutes: Routes = [
     outlet: 'sidemenu'
   },
   
-  /*{ 
+  { 
     path: 'detailrecords/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
     component: DetailRecordsComponent, 
     canActivate: [AuthGuard], //  User must be logged in to view this route
     outlet: 'detail'
-  },*/
+  },
 
   { 
-    path: 'detailrecords/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    path: 'helloworld/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
     component: HelloWorldComponent, 
     canActivate: [AuthGuard], //  User must be logged in to view this route
     outlet: 'detail'
   },
+
+  { 
+    path: 'templatesyntaxproperties/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    component: TemplateSyntaxPropertiesComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    outlet: 'detail'
+  },
+
+  { 
+    path: 'searchbox/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    component: SearchBoxComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    outlet: 'detail'
+  },
+
+
+  { 
+    path: 'colorpicker/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    component: ColorPickerComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    outlet: 'detail'
+  },
+
+  { 
+    path: 'collapsible/:dataElementID/:elementValueID/:groupSystemID/:orgCode/:sourceSystemID', 
+    component: CollapsibleComponent, 
+    canActivate: [AuthGuard], //  User must be logged in to view this route
+    outlet: 'detail'
+  },
+
 
 
   { 

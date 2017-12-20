@@ -48,9 +48,19 @@ export class SideMenuComponent implements OnInit {
   }
 
   navigate(data) {
-
-      console.log(data);
-      this.router.navigate([{ outlets: { detail: ['detailrecords',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      if(data.DataElementID == "ANGULAR-Beginner-MNU" && data.ElementValueID == "HelloWorld") {
+        this.router.navigate([{ outlets: { detail: ['helloworld',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      } else if(data.DataElementID == "ANGULAR-Beginner-MNU" && data.ElementValueID == "TemplateSyntaxProperties") {
+        this.router.navigate([{ outlets: { detail: ['templatesyntaxproperties',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      } else if(data.DataElementID == "ANGULAR-Beginner-MNU" && data.ElementValueID == "SearchBox") {
+        this.router.navigate([{ outlets: { detail: ['searchbox',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      } else if(data.DataElementID == "ANGULAR-Beginner-MNU" && data.ElementValueID == "ColorPicker") {
+        this.router.navigate([{ outlets: { detail: ['colorpicker',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      } else if(data.DataElementID == "ANGULAR-Beginner-MNU" && data.ElementValueID == "Collapsible") {
+        this.router.navigate([{ outlets: { detail: ['collapsible',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      } else {
+        this.router.navigate([{ outlets: { detail: ['detailrecords',data.DataElementID ,data.ElementValueID ,data.GroupSystemID ,data.OrgCode, data.SourceSystemID] }}]);
+      }
       return false;
   }
 }

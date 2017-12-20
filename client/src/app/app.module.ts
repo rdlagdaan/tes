@@ -40,6 +40,15 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DetailRecordsComponent } from './components/detail-records/detail-records.component';
 import { HelloWorldComponent } from './components/hello-world/hello-world.component';
+import { TemplateSyntaxPropertiesComponent } from './components/template-syntax-properties/template-syntax-properties.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { SearchBoxDetailComponent } from './components/search-box/search-box-detail/search-box-detail.component';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { ColorPickerDetailComponent } from './components/color-picker/color-picker-detail/color-picker-detail.component';
+import { ColorPreviewer } from './components/color-picker/color-previewer';
+import { CollapsibleComponent } from './components/collapsible/collapsible.component';
+import { CollapsibleDetailComponent } from './components/collapsible/collapsible-detail/collapsible-detail.component';
+import { CollapseOnClick } from './components/collapsible/collapse-on-click.directive';
 
 
 import { TreeViewComponent } from './shared/treeview-menu/treeview.component';
@@ -78,7 +87,16 @@ import { PersonalInformationService } from './services/personal-information.serv
     TopMenuComponent,
     SideMenuComponent,
     DetailRecordsComponent,
-    HelloWorldComponent
+    HelloWorldComponent,
+    TemplateSyntaxPropertiesComponent,
+    SearchBoxComponent,
+    SearchBoxDetailComponent,
+    ColorPickerComponent,
+    ColorPickerDetailComponent,
+    ColorPreviewer,
+    CollapsibleComponent,
+    CollapsibleDetailComponent,
+    CollapseOnClick
   ],
   imports: [
     BrowserModule, 

@@ -1,0 +1,7 @@
+
+<div class="container">
+  <color-picker-detail #sample placeholder="Custom Placeholder"  #picker [color]="color" (color)="color = $event"></color-picker-detail>
+  <color-previewer #previewer [color]="color"></color-previewer>
+  <button (click)="picker.reset()">Reset</button> 
+  <input (keyup)="sample.color = input.value" #input placeholder="Type your color here">
+</div>

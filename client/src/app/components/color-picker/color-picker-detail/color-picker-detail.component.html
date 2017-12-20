@@ -1,0 +1,22 @@
+<div class="container">
+  
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+  
+          <div class="color-title" [ngStyle]="{color: color}">Pick a Color</div>
+          <div class="color-picker">
+            <div class="color-sample color-sample-blue" (click)="choose('#b13138')"></div>
+            <div class="color-sample color-sample-red" (click)="choose('#1976d2')"></div>
+            <div class="color-sample color-sample-green" (click)="choose('green')"></div>
+            <div class="color-sample color-sample-yellow" (click)="choose('yellow')"></div>
+            <div class="color-sample color-sample-orange" (click)="choose('orange')"></div>
+            <div class="color-sample color-sample-indigo" (click)="choose('indigo')"></div>
+            <div class="color-sample color-sample-brown" (click)="choose('brown')"></div>
+            <div class="color-sample color-sample-pink" (click)="choose('pink')"></div>
+            <div class="color-sample color-sample-gold" (click)="choose('gold')"></div>
+            <div class="color-sample color-sample-silver" (click)="choose('silver')"></div>
+            <div class="color-sample" [ngStyle]="{background: color}"></div>
+  
+          </div>
+  
+      </div>
+</div>
